@@ -11,7 +11,7 @@ const LotteryPage = () => {
       <TextContainer>
         <p className="small">오늘 경기를 생각하며</p>
         <div className="margin10"></div>
-        <p className="big">행운 복권을 뒤집어보세요</p>
+        <p className="big">야구 복권을 뒤집어보세요</p>
       </TextContainer>
       <div className="margin50"></div>
       <Lottery />
@@ -23,7 +23,7 @@ const LotteryPage = () => {
 export default LotteryPage;
 
 const MainContainer = styled.div`
-  width: 390px;
+  width: 100vw;
   height: 100lvh;
   padding: 0 25px;
   background-color: #fafafa;

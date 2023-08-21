@@ -51,9 +51,9 @@ const Lottery = () => {
 
   // 공유하기
   const onClickShare = () => {
-    const header = "[야구 행운 복권 🍀]";
+    const header = "[오늘의 야구 복권 🍀]";
     const text = lotteryData?.title;
-    const url = "https://twitter-michelin.web.app/";
+    const url = "https://happybaseball-diary.web.app/";
     window.open(
       `https://twitter.com/intent/tweet?text=${header} 오늘은 "${text}"&url=${url}`
     );
@@ -154,6 +154,7 @@ const LotteryContainer = styled.div`
       font-size: 17px;
       font-weight: 600;
       margin: 0;
+      padding: 0px 25px;
     }
   }
 `;
