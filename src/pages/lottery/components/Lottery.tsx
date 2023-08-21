@@ -105,7 +105,10 @@ export default Lottery;
 const LotteryContainer = styled.div`
   display: flex;
   justify-content: center;
+  align-items: center;
   flex-direction: column;
+  /* width: 340px; */
+
   .margin100 {
     height: 100px;
   }
@@ -163,8 +166,6 @@ const ButtonContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 25px;
-
   width: 340px;
   .btn {
     border: 1px solid black;
