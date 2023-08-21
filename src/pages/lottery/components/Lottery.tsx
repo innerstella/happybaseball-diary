@@ -86,7 +86,14 @@ const Lottery = () => {
           </SwiperSlide>
         </Swiper>
       </motion.div>
-      <div className="margin100"></div>
+      <div className="margin30"></div>
+
+      <div className="info-container">
+        <span className="material-symbols-outlined info-text">info</span>
+        <span className="info-text">&nbsp;이미지는 캡쳐해서 보관해주세요!</span>
+      </div>
+      <div className="margin50"></div>
+
       <ButtonContainer>
         <div className="btn" onClick={onClickRetry}>
           다시 뽑기
@@ -95,6 +102,7 @@ const Lottery = () => {
           트위터로 공유하기
         </div>
       </ButtonContainer>
+
       <div className="margin120"></div>
     </LotteryContainer>
   );
@@ -108,9 +116,20 @@ const LotteryContainer = styled.div`
   align-items: center;
   flex-direction: column;
   /* width: 340px; */
-
-  .margin100 {
-    height: 100px;
+  .info-container {
+    margin-top: 8px;
+    display: flex;
+    align-items: center;
+    .info-text {
+      color: gray;
+      font-size: 14px;
+    }
+  }
+  .margin30 {
+    height: 30px;
+  }
+  .margin50 {
+    height: 50px;
   }
   .margin120 {
     height: 120px;
