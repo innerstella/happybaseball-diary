@@ -16,6 +16,7 @@ const HomePage = () => {
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userData, setUserData] = useState();
+
   const localUserData = () => {
     for (const key of Object.keys(sessionStorage)) {
       if (key.includes("firebase:authUser:") && typeof key === "string") {
@@ -26,8 +27,11 @@ const HomePage = () => {
   };
   useEffect(() => {
     const value = localUserData();
+    let data;
     if (value && typeof value === "string") {
-      setUserData(JSON.parse(value));
+      data = JSON.parse(value);
+      setUserData(data);
+      sessionStorage.setItem("uid", data.uid);
     }
   }, []);
 

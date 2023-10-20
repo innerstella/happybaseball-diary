@@ -1,7 +1,9 @@
 import * as firebase from "firebase/app";
 import * as auth from "firebase/auth";
+import "firebase/firestore";
 
 import { GoogleAuthProvider } from "firebase/auth";
+import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_API_KEY,
@@ -11,13 +13,6 @@ const firebaseConfig = {
   messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
   appId: process.env.REACT_APP_APP_ID,
   measurementId: process.env.REACT_APP_MEASUREMENT_ID,
-  //   apiKey: "AIzaSyBTSc8FxJVeG670q0Hihc5Qu9lBRCulHvA",
-  //   authDomain: "happybaseball-diary.firebaseapp.com",
-  //   projectId: "happybaseball-diary",
-  //   storageBucket: "happybaseball-diary.appspot.com",
-  //   messagingSenderId: "613806071594",
-  //   appId: "1:613806071594:web:6f104709241d302804c853",
-  //   measurementId: "G-G6T6FEC0DB",
 };
 
 // Initialize Firebase
@@ -41,3 +36,6 @@ export const signInGoogle = () => {
       });
   });
 };
+
+// db
+export const dbService = getFirestore(fbase);
