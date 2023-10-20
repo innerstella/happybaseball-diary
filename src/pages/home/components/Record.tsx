@@ -64,9 +64,9 @@ const Container = styled.div`
   margin-top: 1rem;
   display: flex;
   flex-direction: row;
-  width: 100vw;
+  /* width: 100vw; */
   .card-box {
-    width: 65%;
+    width: 80vw;
 
     padding: 1.25rem 1.5rem;
     border-radius: 0.625rem;
@@ -117,7 +117,7 @@ const Box2 = styled.div`
 `;
 
 const WinBox = styled.div`
-  width: 2.5rem;
+  width: 10vw;
   height: auto;
   flex-shrink: 0;
   border-radius: 0rem 0.625rem 0.625rem 0rem;
@@ -136,7 +136,7 @@ const WinBox = styled.div`
 `;
 
 const LoseBox = styled.div`
-  width: 2.5rem;
+  width: 10vw;
   height: auto;
   flex-shrink: 0;
   border-radius: 0rem 0.625rem 0.625rem 0rem;
@@ -155,7 +155,7 @@ const LoseBox = styled.div`
 `;
 
 const DrawBox = styled.div`
-  width: 2.5rem;
+  width: 10vw;
   height: auto;
   flex-shrink: 0;
   border-radius: 0rem 0.625rem 0.625rem 0rem;

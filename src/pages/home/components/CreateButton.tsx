@@ -1,23 +1,27 @@
 import { styled } from "styled-components";
 
-const CreateButton = () => {
+type Props = {
+  text: string;
+  onClick?: () => void;
+};
+
+const Button = ({ text, onClick }: Props) => {
   return (
-    <Container>
-      <p className="text">기록하기</p>
+    <Container onClick={onClick}>
+      <p className="text">{text}</p>
     </Container>
   );
 };
 
-export default CreateButton;
+export default Button;
 
 const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100%;
+  width: 90vw;
 
   height: 3.75rem;
-  flex-shrink: 0;
   border-radius: 0.625rem;
   background: #464646;
 

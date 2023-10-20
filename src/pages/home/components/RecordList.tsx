@@ -41,6 +41,9 @@ export default RecordList;
 
 const Container = styled.div`
   margin-top: 3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 
   .text {
     color: #000;
