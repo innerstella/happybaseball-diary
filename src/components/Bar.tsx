@@ -1,11 +1,11 @@
 import { useNavigate } from "react-router-dom";
 import { styled } from "styled-components";
 
-const Bar = () => {
+const BackBar = () => {
   const navigate = useNavigate();
   return (
     <>
-      <BackBar onClick={() => navigate("/")}>
+      <Container onClick={() => navigate("/")}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="26"
@@ -20,13 +20,14 @@ const Bar = () => {
             fill="#4A5568"
           />
         </svg>
-      </BackBar>
+      </Container>
     </>
   );
 };
 
-export default Bar;
+export default BackBar;
 
-const BackBar = styled.div`
-  width: 25px;
+const Container = styled.div`
+  padding: 0 25px;
+  margin-top: 50px;
 `;

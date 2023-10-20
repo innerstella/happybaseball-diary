@@ -33,11 +33,11 @@ const Lottery = () => {
   // 복권 데이터
   const [lotteryData, setLotteryData] = useState<LotteryProps>();
   useEffect(() => {
-    const lottery = makeLottery();
+    const lottery = pickRandom();
     setLotteryData(lottery);
   }, []);
 
-  const makeLottery = () => {
+  const pickRandom = () => {
     const lotteryListLength = lotteryList.length;
     const randomNum = Math.floor(Math.random() * lotteryListLength + 1);
     const lottery = lotteryList[randomNum - 1];
