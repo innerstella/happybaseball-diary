@@ -2,9 +2,12 @@ import { useEffect, useState } from "react";
 import { styled } from "styled-components";
 import Record from "./Record";
 
-import dummyData from "../../../data/dummy.json";
-import { doc, collection, getDocs } from "firebase/firestore";
+// firebase
+import { collection, getDocs } from "firebase/firestore";
 import { dbService } from "../../../firebase";
+
+// ui
+import { Spinner } from "@chakra-ui/react";
 
 const RecordList = () => {
   // 유저 정보
@@ -19,7 +22,6 @@ const RecordList = () => {
         .then((querySnapshot) => {
           querySnapshot.forEach((doc) => {
             newUserData.push(doc.data());
-            console.log(doc.data());
           });
 
           newUserData.sort((a, b) => {
@@ -28,7 +30,6 @@ const RecordList = () => {
 
           // 이전 userData 배열과 새로운 데이터를 병합
           setUserData((prev) => [...prev, ...newUserData]);
-          console.log(newUserData);
         })
         .catch((error) => {
           console.error("Error getting documents: ", error);
@@ -45,7 +46,6 @@ const RecordList = () => {
     userData.forEach((data) => {
       sum += data.count;
       num++;
-      console.log(data.date.split(".").join(""));
     });
     let div = (sum / num).toFixed(3);
     setOdds(div);
@@ -53,18 +53,32 @@ const RecordList = () => {
 
   return (
     <Container>
-      <p className="text">🏆 {odds}</p>
-      {userData.map((data, id) => {
-        return (
-          <Record
-            key={data.date}
-            date={data.date}
-            location={data.location}
-            vs={data.vs}
-            score={[data.myScore, data.vsScore]}
+      {odds === "NaN" ? (
+        <div className="padding">
+          <Spinner
+            thickness="4px"
+            speed="1s"
+            emptyColor="gray.200"
+            color="#464646"
+            size="xl"
           />
-        );
-      })}
+        </div>
+      ) : (
+        <>
+          <p className="text">🏆 {odds}</p>
+          {userData.map((data, id) => {
+            return (
+              <Record
+                key={data.date}
+                date={data.date}
+                location={data.location}
+                vs={data.vs}
+                score={[data.myScore, data.vsScore]}
+              />
+            );
+          })}
+        </>
+      )}
     </Container>
   );
 };
@@ -76,6 +90,11 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  .padding {
+    margin-top: 30vh;
+    display: flex;
+    justify-content: center;
+  }
 
   .text {
     color: #000;
