@@ -11,6 +11,7 @@ import { Spinner } from "@chakra-ui/react";
 import FirstRecord from "./FirstRecord";
 
 const RecordList = () => {
+  const [isLoading, setIsLoading] = useState(true);
   // 유저 정보
   const uid = sessionStorage.getItem("uid");
   const [userData, setUserData] = useState<any[]>([]);
@@ -31,6 +32,7 @@ const RecordList = () => {
 
           // 이전 userData 배열과 새로운 데이터를 병합
           setUserData((prev) => [...prev, ...newUserData]);
+          setIsLoading(false);
         })
         .catch((error) => {
           console.error("Error getting documents: ", error);
@@ -50,43 +52,57 @@ const RecordList = () => {
     });
     let div = (sum / num).toFixed(3);
     setOdds(div);
-    sessionStorage.setItem("23odds", div);
   }, [userData]);
 
+  console.log(userData, odds, isLoading);
   return (
     <Container>
-      {userData.length > 0 ? (
-        <>
-          {odds === "NaN" ? (
-            <div className="padding">
-              <Spinner
-                thickness="4px"
-                speed="1s"
-                emptyColor="gray.200"
-                color="#464646"
-                size="xl"
-              />
-            </div>
-          ) : (
-            <>
-              <p className="text">🏆 {odds}</p>
-              {userData.map((data, id) => {
-                return (
-                  <Record
-                    key={data.date}
-                    date={data.date}
-                    location={data.location}
-                    vs={data.vs}
-                    score={[data.myScore, data.vsScore]}
-                  />
-                );
-              })}
-            </>
-          )}
-        </>
+      {isLoading ? (
+        <div className="padding">
+          <Spinner
+            thickness="4px"
+            speed="1s"
+            emptyColor="gray.200"
+            color="#464646"
+            size="xl"
+          />{" "}
+        </div>
       ) : (
         <>
-          <FirstRecord />
+          {userData.length > 0 ? (
+            <>
+              {odds === "NaN" ? (
+                <div className="padding">
+                  <Spinner
+                    thickness="4px"
+                    speed="1s"
+                    emptyColor="gray.200"
+                    color="#464646"
+                    size="xl"
+                  />
+                </div>
+              ) : (
+                <>
+                  <p className="text">🏆 {odds}</p>
+                  {userData.map((data, id) => {
+                    return (
+                      <Record
+                        key={data.date}
+                        date={data.date}
+                        location={data.location}
+                        vs={data.vs}
+                        score={[data.myScore, data.vsScore]}
+                      />
+                    );
+                  })}
+                </>
+              )}
+            </>
+          ) : (
+            <>
+              <FirstRecord />
+            </>
+          )}
         </>
       )}
     </Container>

@@ -74,9 +74,11 @@ const DetailPage = () => {
               vs={detailData.vs}
               score={[detailData.myScore, detailData.vsScore]}
             />
-            <div className="memo-box">
-              <p className="memo-text">{detailData.memo}</p>
-            </div>
+            {detailData.memo && (
+              <div className="memo-box">
+                <p className="memo-text">{detailData.memo}</p>
+              </div>
+            )}
           </div>
         </>
       ) : (
