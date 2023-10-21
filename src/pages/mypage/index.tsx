@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import Banner from "../../components/Banner";
 import { collection, getDocs } from "firebase/firestore";
 import { dbService } from "../../firebase";
+import Lottery from "../lottery/components/Lottery";
 
 const MyPage = () => {
   // 유저 정보
@@ -87,6 +88,8 @@ const MyPage = () => {
           <OddBox ratio={odds22} />
         )}
       </Odds>
+      <div className="gap"></div>
+      <Lottery />
       {/* <Odds>
         <p className="title">팀별</p>
         <OddBox ratio="0.555" />

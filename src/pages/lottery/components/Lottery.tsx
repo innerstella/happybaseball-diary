@@ -76,7 +76,7 @@ const Lottery = () => {
           <SwiperSlide className="box-1">
             <img
               className="lottery-img"
-              src="/assets/lottery.png"
+              src="/assets/png/lottery.png"
               alt="행운복권"
             />
           </SwiperSlide>
@@ -88,7 +88,7 @@ const Lottery = () => {
       </motion.div>
       <div className="margin30"></div>
 
-      <div className="info-container">
+      {/* <div className="info-container">
         <span className="material-symbols-outlined info-text">info</span>
         <span className="info-text">&nbsp;이미지는 캡쳐해서 보관해주세요!</span>
       </div>
@@ -101,7 +101,7 @@ const Lottery = () => {
         <div className="btn" onClick={onClickShare}>
           트위터로 공유하기
         </div>
-      </ButtonContainer>
+      </ButtonContainer> */}
 
       <div className="margin120"></div>
     </LotteryContainer>
