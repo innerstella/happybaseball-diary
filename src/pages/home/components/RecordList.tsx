@@ -124,7 +124,7 @@ const Container = styled.div`
 
   .text {
     color: #000;
-    font-family: Inter;
+    font-family: "SUIT", sans-serif;
     font-size: 1.6875rem;
     font-style: normal;
     font-weight: 500;

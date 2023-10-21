@@ -102,7 +102,7 @@ const Box1 = styled.div`
     .text {
       margin: 0;
       color: #4a5568;
-      font-family: Inter;
+      font-family: "SUIT", sans-serif;
       font-size: 1.25rem;
       font-style: normal;
       font-weight: 400;
@@ -113,7 +113,7 @@ const Box1 = styled.div`
 
 const Box2 = styled.div`
   color: #4a5568;
-  font-family: Inter;
+  font-family: "SUIT", sans-serif;
   font-size: 2.5rem;
   font-style: normal;
   font-weight: 700;
@@ -131,7 +131,7 @@ const WinBox = styled.div`
   justify-content: center;
 
   color: #fff;
-  font-family: Inter;
+  font-family: "SUIT", sans-serif;
   font-size: 1.25rem;
   font-style: normal;
   font-weight: 700;
@@ -150,7 +150,7 @@ const LoseBox = styled.div`
   justify-content: center;
 
   color: #fff;
-  font-family: Inter;
+  font-family: "SUIT", sans-serif;
   font-size: 1.25rem;
   font-style: normal;
   font-weight: 700;
@@ -169,7 +169,7 @@ const DrawBox = styled.div`
   justify-content: center;
 
   color: #fff;
-  font-family: Inter;
+  font-family: "SUIT", sans-serif;
   font-size: 1.25rem;
   font-style: normal;
   font-weight: 700;

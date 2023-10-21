@@ -70,8 +70,10 @@ const MyPage = () => {
   return (
     <MainContainer>
       <TopAppBar page="mypage" />
-      <div className="gap"></div>
-      <Banner />
+      <div className="gap">
+        <Banner />
+        <p>d</p>
+      </div>
       <Odds>
         <p className="title">23 시즌</p>
         {odds23 === "NaN" ? (
@@ -108,6 +110,11 @@ const MainContainer = styled.div`
   overflow-x: hidden;
   .gap {
     margin-top: 3rem;
+    width: 100vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
   }
 `;
 
@@ -116,7 +123,7 @@ const Odds = styled.div`
   .title {
     padding-bottom: 1rem;
     color: #000;
-    font-family: Inter;
+    font-family: "SUIT", sans-serif;
     font-size: 1.25rem;
     font-style: normal;
     font-weight: 700;

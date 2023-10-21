@@ -17,7 +17,7 @@ const Box = styled.div`
   .text {
     margin: 0;
     color: #000;
-    font-family: Inter;
+    font-family: "SUIT", sans-serif;
     font-size: 1.6875rem;
     font-style: normal;
     font-weight: 500;
