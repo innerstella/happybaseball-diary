@@ -8,6 +8,7 @@ import { dbService } from "../../../firebase";
 
 // ui
 import { Spinner } from "@chakra-ui/react";
+import FirstRecord from "./FirstRecord";
 
 const RecordList = () => {
   // 유저 정보
@@ -49,34 +50,43 @@ const RecordList = () => {
     });
     let div = (sum / num).toFixed(3);
     setOdds(div);
+    sessionStorage.setItem("23odds", div);
   }, [userData]);
 
   return (
     <Container>
-      {odds === "NaN" ? (
-        <div className="padding">
-          <Spinner
-            thickness="4px"
-            speed="1s"
-            emptyColor="gray.200"
-            color="#464646"
-            size="xl"
-          />
-        </div>
+      {userData.length > 0 ? (
+        <>
+          {odds === "NaN" ? (
+            <div className="padding">
+              <Spinner
+                thickness="4px"
+                speed="1s"
+                emptyColor="gray.200"
+                color="#464646"
+                size="xl"
+              />
+            </div>
+          ) : (
+            <>
+              <p className="text">🏆 {odds}</p>
+              {userData.map((data, id) => {
+                return (
+                  <Record
+                    key={data.date}
+                    date={data.date}
+                    location={data.location}
+                    vs={data.vs}
+                    score={[data.myScore, data.vsScore]}
+                  />
+                );
+              })}
+            </>
+          )}
+        </>
       ) : (
         <>
-          <p className="text">🏆 {odds}</p>
-          {userData.map((data, id) => {
-            return (
-              <Record
-                key={data.date}
-                date={data.date}
-                location={data.location}
-                vs={data.vs}
-                score={[data.myScore, data.vsScore]}
-              />
-            );
-          })}
+          <FirstRecord />
         </>
       )}
     </Container>

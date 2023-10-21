@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { styled } from "styled-components";
 
 type Props = {
@@ -9,6 +10,7 @@ type Props = {
 };
 
 const Record = ({ date, location, vs, score }: Props) => {
+  const navigate = useNavigate();
   // 경기 결과 계산 (1:win, 2: lose, 3:draw)
   const [result, setResult] = useState(0);
 
@@ -23,7 +25,7 @@ const Record = ({ date, location, vs, score }: Props) => {
   }, [score]);
 
   return (
-    <Container>
+    <Container onClick={() => navigate(`/detail/${date}`)}>
       <div className="card-box">
         <Box1>
           <div className="label-box">
@@ -32,7 +34,9 @@ const Record = ({ date, location, vs, score }: Props) => {
               alt="calendar"
               className="svg"
             />
-            <p className="text">{date}</p>
+            <p className="text">
+              {date.slice(0, 2)}.{date.slice(2, 4)}.{date.slice(4, 6)}
+            </p>
           </div>
           <div className="label-box">
             <img
@@ -43,7 +47,7 @@ const Record = ({ date, location, vs, score }: Props) => {
             <p className="text">{location}</p>
           </div>
           <div className="label-box">
-            <p className="text">vs.</p>
+            <p className="text">Vs</p>
             <p className="text">{vs}</p>
           </div>
         </Box1>

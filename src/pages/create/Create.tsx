@@ -45,7 +45,7 @@ const CreatePage = () => {
       const year = selected?.getFullYear().toString().slice(-2); // 끝 두 자리만 사용
       const month = (selected?.getMonth() + 1).toString().padStart(2, "0"); // 1을 더하고 2자리로 포맷팅
       const day = selected?.getDate().toString().padStart(2, "0"); // 2자리로 포맷팅
-      date = `${year}.${month}.${day}`;
+      date = `${year}${month}${day}`;
     }
 
     // 승률계산용 숫자 (0, 1)

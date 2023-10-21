@@ -7,13 +7,11 @@ import FirstRecord from "./components/FirstRecord";
 import RecordList from "./components/RecordList";
 import Button from "./components/CreateButton";
 import LoginPage from "../login";
-import { authService } from "../../firebase";
 
 const HomePage = () => {
   const navigate = useNavigate();
 
   // 로그인 여부
-
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userData, setUserData] = useState();
 
@@ -35,9 +33,6 @@ const HomePage = () => {
     }
   }, []);
 
-  // 현재 기록 개수
-  const [recordNum, setRecordNum] = useState(1);
-
   return (
     <MainContainer>
       <div className="padding">
@@ -46,13 +41,11 @@ const HomePage = () => {
       {isLoggedIn ? (
         <>
           <div className="padding">
-            {recordNum === 0 ? <FirstRecord /> : <RecordList />}
+            <RecordList />
           </div>
-          {recordNum > 0 && (
-            <FabContainer>
-              <Button text="기록하기" onClick={() => navigate("/create")} />
-            </FabContainer>
-          )}
+          <FabContainer>
+            <Button text="기록하기" onClick={() => navigate("/create")} />
+          </FabContainer>
         </>
       ) : (
         <>

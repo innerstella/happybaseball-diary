@@ -2,13 +2,13 @@ import { styled } from "styled-components";
 import TopAppBar from "../../components/TopAppBar";
 import Button from "../home/components/CreateButton";
 import { signInGoogle } from "../../firebase";
+import { useNavigate } from "react-router-dom";
 // import { GoogleAuthProvider } from "firebase/auth";
 
-const login = () => {
-  signInGoogle();
-};
-
 const LoginPage = () => {
+  const login = () => {
+    signInGoogle();
+  };
   return (
     <MainContainer>
       <Info>

@@ -4,6 +4,7 @@ import HomePage from "./pages/home";
 import CreatePage from "./pages/create/Create";
 import LoginPage from "./pages/login";
 import MyPage from "./pages/mypage";
+import DetailPage from "./pages/detail";
 
 const AppRouter = () => {
   return (
@@ -13,6 +14,7 @@ const AppRouter = () => {
         <Route path="/create" element={<CreatePage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/mypage" element={<MyPage />} />
+        <Route path="/detail/:id" element={<DetailPage />} />
       </Routes>
     </BrowserRouter>
   );
