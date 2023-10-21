@@ -47,7 +47,11 @@ const Record = ({ date, location, vs, score }: Props) => {
             <p className="text">{location}</p>
           </div>
           <div className="label-box">
-            <p className="text">Vs</p>
+            <img
+              src="/assets/svg/ic-solid-game.svg"
+              alt="location"
+              className="svg"
+            />
             <p className="text">{vs}</p>
           </div>
         </Box1>

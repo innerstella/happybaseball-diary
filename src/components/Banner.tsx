@@ -37,10 +37,6 @@ const Banner = () => {
 export default Banner;
 
 const BannerContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-left: 20px;
   .banner {
     width: 340px;
     height: 85px;

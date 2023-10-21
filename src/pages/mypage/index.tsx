@@ -72,7 +72,6 @@ const MyPage = () => {
       <TopAppBar page="mypage" />
       <div className="gap">
         <Banner />
-        <p>d</p>
       </div>
       <Odds>
         <p className="title">23 시즌</p>
@@ -110,11 +109,6 @@ const MainContainer = styled.div`
   overflow-x: hidden;
   .gap {
     margin-top: 3rem;
-    width: 100vw;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
   }
 `;
 
