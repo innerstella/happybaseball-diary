@@ -19,5 +19,5 @@
 
 # 📝 개발 과정
 
-- ⚾️ 직관일기 : 직관 기록하고 직관 승률 계산하는 서비스 개발 일지(https://inner-stella.tistory.com/entry/%E2%9A%BE%EF%B8%8F-%EC%A7%81%EA%B4%80%EC%9D%BC%EA%B8%B0-%EC%A7%81%EA%B4%80-%EA%B8%B0%EB%A1%9D%ED%95%98%EA%B3%A0-%EC%A7%81%EA%B4%80-%EC%8A%B9%EB%A5%A0-%EA%B3%84%EC%82%B0%ED%95%98%EB%8A%94-%EC%84%9C%EB%B9%84%EC%8A%A4-%EA%B0%9C%EB%B0%9C-%EC%9D%BC%EC%A7%80)
-- Google 소셜 로그인 과정 (OAuth)(https://inner-stella.tistory.com/entry/Google-%EC%86%8C%EC%85%9C-%EB%A1%9C%EA%B7%B8%EC%9D%B8-%EA%B5%AC%ED%98%84%ED%95%98%EA%B8%B0-OAuth)
+- [⚾️ 직관일기 : 직관 기록하고 직관 승률 계산하는 서비스 개발 일지](https://inner-stella.tistory.com/entry/%E2%9A%BE%EF%B8%8F-%EC%A7%81%EA%B4%80%EC%9D%BC%EA%B8%B0-%EC%A7%81%EA%B4%80-%EA%B8%B0%EB%A1%9D%ED%95%98%EA%B3%A0-%EC%A7%81%EA%B4%80-%EC%8A%B9%EB%A5%A0-%EA%B3%84%EC%82%B0%ED%95%98%EB%8A%94-%EC%84%9C%EB%B9%84%EC%8A%A4-%EA%B0%9C%EB%B0%9C-%EC%9D%BC%EC%A7%80)
+- [Google 소셜 로그인 과정 (OAuth)](https://inner-stella.tistory.com/entry/Google-%EC%86%8C%EC%85%9C-%EB%A1%9C%EA%B7%B8%EC%9D%B8-%EA%B5%AC%ED%98%84%ED%95%98%EA%B8%B0-OAuth)
