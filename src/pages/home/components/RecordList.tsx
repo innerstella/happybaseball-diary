@@ -9,6 +9,9 @@ import { dbService } from "../../../firebase";
 // ui
 import { Spinner } from "@chakra-ui/react";
 import FirstRecord from "./FirstRecord";
+import { useRecoilState } from "recoil";
+import { winningRate23State } from "../../../atom";
+import { winningRate24State } from "../../../atom";
 
 const RecordList = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -41,20 +44,34 @@ const RecordList = () => {
   }, []);
 
   // 승률 계산
-  const [odds, setOdds] = useState("");
+  const [winningRate23, setWinningRate23] = useRecoilState(winningRate23State);
+  const [winningRate24, setWinningRate24] = useRecoilState(winningRate24State);
 
   useEffect(() => {
-    let sum = 0;
-    let num = 0;
+    let season24 = [0, 0]; // sum, cnt
+    let season23 = [0, 0];
+
     userData.forEach((data) => {
-      sum += data.count;
-      num++;
+      if (data.date.slice(0, 2) === "24") {
+        season24[0] += data.count;
+        season24[1]++;
+      } else if (data.date.slice(0, 2) === "23") {
+        season23[0] += data.count;
+        season23[1]++;
+      }
     });
-    let div = (sum / num).toFixed(3);
-    setOdds(div);
+
+    let div24 = (season24[0] / season24[1]).toFixed(3);
+    let div23 = (season23[0] / season23[1]).toFixed(3);
+
+    if (div24 !== "NaN") {
+      setWinningRate24(div24);
+    }
+    if (div23 !== "NaN") {
+      setWinningRate23(div23);
+    }
   }, [userData]);
 
-  console.log(userData, odds, isLoading);
   return (
     <Container>
       {isLoading ? (
@@ -65,13 +82,13 @@ const RecordList = () => {
             emptyColor="gray.200"
             color="#464646"
             size="xl"
-          />{" "}
+          />
         </div>
       ) : (
         <>
           {userData.length > 0 ? (
             <>
-              {odds === "NaN" ? (
+              {winningRate23 === "NaN" ? (
                 <div className="padding">
                   <Spinner
                     thickness="4px"
@@ -83,7 +100,7 @@ const RecordList = () => {
                 </div>
               ) : (
                 <>
-                  <p className="text">🏆 {odds}</p>
+                  <p className="text">🏆 {winningRate24}</p>
                   {userData.map((data, id) => {
                     return (
                       <Record

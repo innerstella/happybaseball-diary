@@ -2,8 +2,6 @@ import { styled } from "styled-components";
 import TopAppBar from "../../components/TopAppBar";
 import Button from "../home/components/CreateButton";
 import { signInGoogle } from "../../firebase";
-import { useNavigate } from "react-router-dom";
-// import { GoogleAuthProvider } from "firebase/auth";
 
 const LoginPage = () => {
   const login = () => {
@@ -24,7 +22,6 @@ const LoginPage = () => {
 export default LoginPage;
 
 const MainContainer = styled.div`
-  /* width: 100vw; */
   height: 100vh;
   padding-bottom: 10rem;
   background-color: #fafafa;

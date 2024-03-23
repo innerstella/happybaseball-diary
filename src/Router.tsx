@@ -1,5 +1,4 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import LotteryPage from "./pages/lottery";
 import HomePage from "./pages/home";
 import CreatePage from "./pages/create/Create";
 import LoginPage from "./pages/login";
