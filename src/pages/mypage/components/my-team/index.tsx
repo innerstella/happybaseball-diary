@@ -13,16 +13,22 @@ const MyTeam = () => {
   const [myTeamData, setMyTeamData] = useState([]);
 
   useEffect(() => {
-    const data = userData.filter((data: any) => {
+    const myData = userData.filter((data: any) => {
       if (data.my === teamData || data.my === undefined) {
         return data;
       }
     });
 
-    setMyTeamData(data);
+    const otherData = userData.filter((data: any) => {
+      if (data.my !== teamData && data.my !== undefined) {
+        return data;
+      }
+    });
+
+    setMyTeamData(myData);
     setOddStatus({
-      ...oddStatus,
-      myTeam: getWinningRate(data, CURR_YEAR),
+      myTeam: getWinningRate(myData, CURR_YEAR),
+      otherTeam: getWinningRate(otherData, CURR_YEAR),
     });
   }, []);
 

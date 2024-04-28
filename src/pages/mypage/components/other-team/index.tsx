@@ -1,15 +1,12 @@
-import { useRecoilState, useRecoilValue } from "recoil";
-import { oddState, teamState, userDataState } from "../../../../recoil/system";
+import { useRecoilValue } from "recoil";
+import { teamState, userDataState } from "../../../../recoil/system";
 import { useEffect, useState } from "react";
 import Record from "../../../home/components/record/Record";
 import styled from "styled-components";
-import getWinningRate from "../../../../utils/getWinningRate";
-import { CURR_YEAR } from "../../../../constants/system";
 
 const OtherTeam = () => {
   const userData = useRecoilValue(userDataState);
   const teamData = useRecoilValue(teamState);
-  const [oddStatus, setOddStatus] = useRecoilState(oddState);
   const [otherTeamData, setOtherTeamData] = useState([]);
 
   useEffect(() => {
@@ -20,10 +17,6 @@ const OtherTeam = () => {
     });
 
     setOtherTeamData(data);
-    setOddStatus({
-      ...oddStatus,
-      otherTeam: getWinningRate(data, CURR_YEAR),
-    });
   }, []);
 
   return (
