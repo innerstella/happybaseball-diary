@@ -29,7 +29,9 @@ const TopAppBar = ({
     const auth = getAuth();
     signOut(auth)
       .then(() => {
-        navigate("/");
+        localStorage.removeItem("recoil-persist");
+        sessionStorage.clear();
+        navigate("/", { state: { reload: true } });
       })
       .catch((err) => console.error(err));
   };
