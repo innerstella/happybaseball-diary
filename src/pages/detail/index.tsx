@@ -1,13 +1,15 @@
 import { styled } from "styled-components";
-import TopAppBar from "../../components/TopAppBar";
+import TopAppBar from "../../components/top-app-bar";
 import { useEffect, useState } from "react";
 import { collection, getDocs } from "firebase/firestore";
 import { dbService } from "../../firebase";
 import { useParams } from "react-router-dom";
-import Record from "../home/components/Record";
+import Record from "../home/components/record/Record";
 
 // ui
 import { Spinner } from "@chakra-ui/react";
+import { useRecoilValue } from "recoil";
+import { loginState } from "../../recoil/system";
 
 type Props = {
   date: string;
@@ -20,9 +22,10 @@ type Props = {
 
 const DetailPage = () => {
   const { id } = useParams();
+  const loginStatus = useRecoilValue(loginState);
 
   // 유저 정보
-  const uid = sessionStorage.getItem("uid");
+  const uid = loginStatus.uid;
   const [userData, setUserData] = useState<any[]>([]);
   let newUserData: any[] = [];
   const [docID, setDocID] = useState("");

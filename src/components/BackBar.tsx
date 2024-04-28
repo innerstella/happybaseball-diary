@@ -5,7 +5,7 @@ const BackBar = () => {
   const navigate = useNavigate();
   return (
     <>
-      <Container onClick={() => navigate("/")}>
+      <Container onClick={() => navigate(-1)}>
         <img src="assets/svg/ic-outline-back.svg" alt="back" className="svg" />
       </Container>
     </>

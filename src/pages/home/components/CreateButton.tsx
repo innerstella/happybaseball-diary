@@ -19,7 +19,7 @@ const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 90vw;
+  width: 300px;
 
   height: 3.75rem;
   border-radius: 0.625rem;

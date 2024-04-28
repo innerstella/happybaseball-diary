@@ -4,12 +4,15 @@ import AppRouter from "./Router";
 
 import { ChakraProvider } from "@chakra-ui/react";
 import { RecoilRoot } from "recoil";
+import Layout from "./layout";
 
 function App() {
   return (
     <ChakraProvider>
       <RecoilRoot>
-        <AppRouter />
+        <Layout>
+          <AppRouter />
+        </Layout>
       </RecoilRoot>
     </ChakraProvider>
   );

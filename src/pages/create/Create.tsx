@@ -1,7 +1,7 @@
 import { styled } from "styled-components";
 import BackBar from "../../components/BackBar";
 import Button from "../home/components/CreateButton";
-import { FabContainer } from "../home";
+import * as S from "./Create.style";
 
 // db
 import { dbService } from "../../firebase";
@@ -23,9 +23,12 @@ import {
 import { Textarea } from "@chakra-ui/react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useRecoilValue } from "recoil";
+import { loginState } from "../../recoil/system";
 
 const CreatePage = () => {
   const navigate = useNavigate();
+  const loginStatus = useRecoilValue(loginState);
 
   const [selected, setSelected] = useState<Date>();
   const [location, setLocation] = useState("");
@@ -35,7 +38,7 @@ const CreatePage = () => {
   const [memo, setMemo] = useState("");
 
   // 유저 정보
-  const uid = sessionStorage.getItem("uid");
+  const uid = loginStatus.uid;
 
   //등록하기
   const create = () => {
@@ -77,7 +80,7 @@ const CreatePage = () => {
 
   return (
     <>
-      <MainContainer>
+      <S.MainContainer>
         <BackBar />
         <div className="padding">
           <div className="gap"></div>
@@ -192,47 +195,12 @@ const CreatePage = () => {
           />
           {/* 기록하기 버튼*/}
         </div>
-      </MainContainer>
-      <FabContainer>
+      </S.MainContainer>
+      <S.FabContainer>
         <Button text="기록하기" onClick={() => create()} />
-      </FabContainer>
+      </S.FabContainer>
     </>
   );
 };
 
 export default CreatePage;
-
-const MainContainer = styled.div`
-  padding: 0 25px;
-  padding-bottom: 10rem;
-  height: 100vh;
-  padding-bottom: 10rem;
-  background-color: #fafafa;
-  font-family: "SUIT", sans-serif;
-  overflow-x: hidden;
-  .gap {
-    height: 3rem;
-  }
-  .padding {
-    padding: 0 15px;
-  }
-  .label {
-    margin-bottom: 1rem;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 1rem;
-    .svg {
-      height: 1.25rem;
-    }
-    .text {
-      margin: 0;
-      color: #4a5568;
-      font-family: "SUIT", sans-serif;
-      font-size: 1.25rem;
-      font-style: normal;
-      font-weight: 400;
-      line-height: normal;
-    }
-  }
-`;
