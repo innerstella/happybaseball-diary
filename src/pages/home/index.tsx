@@ -30,7 +30,8 @@ const HomePage = () => {
     if (value && typeof value === "string") {
       data = JSON.parse(value);
       setUserData(data);
-      setLoginStatus({ isLogin: true, uid: sessionStorage.getItem("uid") });
+      console.log(data);
+      setLoginStatus({ isLogin: true, uid: data.uid });
     }
   }, []);
 
