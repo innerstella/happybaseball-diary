@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useRecoilState } from "recoil";
 import * as S from "./RecordList.style";
 import Record from "../Record";
 
@@ -9,23 +10,16 @@ import { dbService } from "../../../../firebase";
 // ui
 import { Spinner } from "@chakra-ui/react";
 import FirstRecord from "../FirstRecord";
-import { useRecoilState } from "recoil";
-import { winningRate23State } from "../../../../recoil/winningRate";
-import { winningRate24State } from "../../../../recoil/winningRate";
 import SeasonChip from "../../../../components/chip/season-chip";
 import { currSeasonState } from "../../../../recoil/system";
+import getWinningRate from "../../../../utils/getWinningRate";
 
 const RecordList = () => {
-  const [currSeason, setCurrSeason] = useRecoilState(currSeasonState);
-  // 승률 계산
-  const [winningRate23, setWinningRate23] = useRecoilState(winningRate23State);
-  const [winningRate24, setWinningRate24] = useRecoilState(winningRate24State);
-
-  const [isLoading, setIsLoading] = useState(true);
-  // const [currSeason, setCurrSeason] = useState(2024); // [2024, 2023]
-  const [winningRate, setWinningRate] = useState(winningRate24); // [2024, 2023]
-
   const seasonList = [2024, 2023];
+  const [currSeason, setCurrSeason] = useRecoilState(currSeasonState);
+  const [isLoading, setIsLoading] = useState(true);
+  const [winningRate, setWinningRate] = useState("0.000");
+
   // 유저 정보
   const uid = sessionStorage.getItem("uid");
   const [userData, setUserData] = useState<any[]>([]);
@@ -55,37 +49,10 @@ const RecordList = () => {
   }, []);
 
   useEffect(() => {
-    let season24 = [0, 0]; // sum, cnt
-    let season23 = [0, 0];
-
-    userData.forEach((data) => {
-      if (data.date.slice(0, 2) === "24") {
-        season24[0] += data.count;
-        season24[1]++;
-      } else if (data.date.slice(0, 2) === "23") {
-        season23[0] += data.count;
-        season23[1]++;
-      }
-    });
-
-    let div24 = (season24[0] / season24[1]).toFixed(3);
-    let div23 = (season23[0] / season23[1]).toFixed(3);
-
-    if (div24 !== "NaN") {
-      setWinningRate24(div24);
+    if (userData.length > 0) {
+      setWinningRate(getWinningRate(userData, currSeason));
     }
-    if (div23 !== "NaN") {
-      setWinningRate23(div23);
-    }
-  }, [userData]);
-
-  useEffect(() => {
-    if (currSeason === 2024) {
-      setWinningRate(winningRate24);
-    } else if (currSeason === 2023) {
-      setWinningRate(winningRate23);
-    }
-  }, [currSeason]);
+  }, [userData, currSeason]);
 
   return (
     <S.Container>
@@ -127,17 +94,22 @@ const RecordList = () => {
               ) : (
                 <>
                   <p className="text">🏆 {winningRate}</p>
-                  {userData.map((data, id) => {
-                    return (
-                      <Record
-                        key={data.date}
-                        date={data.date}
-                        location={data.location}
-                        vs={data.vs}
-                        score={[data.myScore, data.vsScore]}
-                      />
-                    );
-                  })}
+                  {userData
+                    .filter(
+                      (elem) =>
+                        elem.date.slice(0, 2) === String(currSeason).slice(2, 4)
+                    )
+                    .map((data, id) => {
+                      return (
+                        <Record
+                          key={data.date}
+                          date={data.date}
+                          location={data.location}
+                          vs={data.vs}
+                          score={[data.myScore, data.vsScore]}
+                        />
+                      );
+                    })}
                 </>
               )}
             </>
