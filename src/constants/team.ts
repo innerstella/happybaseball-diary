@@ -10,3 +10,28 @@ export const TEAM_COLOR: { [key: string]: string } = {
   한화: "#ED702D",
   키움: "#4F0F16",
 };
+
+export const TEAM_LIST = [
+  "LG",
+  "KT",
+  "SSG",
+  "NC",
+  "두산",
+  "KIA",
+  "롯데",
+  "삼성",
+  "한화",
+  "키움",
+];
+
+export const PLACE_LIST = [
+  "고척",
+  "라팍",
+  "랜필",
+  "사직",
+  "이팍",
+  "엔팍",
+  "위팍",
+  "잠실",
+  "챔필",
+];
