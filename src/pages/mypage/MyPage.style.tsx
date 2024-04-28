@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const MainContainer = styled.div`
+export const Container = styled.div`
   padding: 50px 20px;
   width: 100vw;
   height: 100vh;
@@ -13,19 +13,25 @@ export const MainContainer = styled.div`
   gap: 2rem;
 `;
 
-export const Banner = styled.div`
-  width: 100%;
-`;
-
-export const Odds = styled.div`
-  padding-top: 3rem;
-  .title {
-    padding-bottom: 1rem;
-    color: #000;
-    font-family: "SUIT", sans-serif;
-    font-size: 1.25rem;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
+export const User = styled.div`
+  display: flex;
+  gap: 0.5rem;
+  span {
+    font-size: 1.4rem;
+    font-weight: 600;
+  }
+  img {
+    width: 20px;
+  }
+  div {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 0.5rem;
+    border: 1px solid gray;
+    border-radius: 10px;
+    width: 100%;
+    padding: 10px 0;
+    cursor: pointer;
   }
 `;

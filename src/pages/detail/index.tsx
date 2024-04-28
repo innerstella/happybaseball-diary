@@ -8,6 +8,8 @@ import Record from "../home/components/record/Record";
 
 // ui
 import { Spinner } from "@chakra-ui/react";
+import { useRecoilValue } from "recoil";
+import { loginState } from "../../recoil/system";
 
 type Props = {
   date: string;
@@ -20,9 +22,10 @@ type Props = {
 
 const DetailPage = () => {
   const { id } = useParams();
+  const loginStatus = useRecoilValue(loginState);
 
   // 유저 정보
-  const uid = sessionStorage.getItem("uid");
+  const uid = loginStatus.uid;
   const [userData, setUserData] = useState<any[]>([]);
   let newUserData: any[] = [];
   const [docID, setDocID] = useState("");

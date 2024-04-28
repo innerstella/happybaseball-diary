@@ -38,7 +38,7 @@ const TopAppBar = ({
       {page === "home" && (
         <>
           <h1 className="title">⚾️ 직관일기</h1>
-          {loginStatus === true && (
+          {loginStatus.isLogin === true && (
             <img
               onClick={() => navigate("/mypage")}
               src="assets/svg/ic-solid-user.svg"

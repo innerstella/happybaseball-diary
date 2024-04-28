@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import * as S from "./RecordList.style";
 import Record from "../record/Record";
 
@@ -11,18 +11,24 @@ import { dbService } from "../../../../firebase";
 import { Spinner } from "@chakra-ui/react";
 import FirstRecord from "../FirstRecord";
 import SeasonChip from "../../../../components/chip/season-chip";
-import { currSeasonState, userDataState } from "../../../../recoil/system";
+import {
+  currSeasonState,
+  loginState,
+  userDataState,
+} from "../../../../recoil/system";
 import getWinningRate from "../../../../utils/getWinningRate";
 
 const RecordList = () => {
   const seasonList = [2024, 2023];
   const [currSeason, setCurrSeason] = useRecoilState(currSeasonState);
   const [userStatus, setUserStatus] = useRecoilState(userDataState);
+  const loginStatus = useRecoilValue(loginState);
   const [isLoading, setIsLoading] = useState(true);
   const [winningRate, setWinningRate] = useState("0.000");
 
   // 유저 정보
-  const uid = sessionStorage.getItem("uid");
+
+  const uid = loginStatus.uid;
   const [userData, setUserData] = useState<any[]>([]);
   let newUserData: any[] = [];
 
@@ -83,9 +89,9 @@ const RecordList = () => {
             })}
           </S.SeasonTap>
           {userData.length > 0 ? (
-            <>
+            <S.RecordBox>
               {winningRate === "NaN" ? (
-                <div className="padding">
+                <div>
                   <Spinner
                     thickness="4px"
                     speed="1s"
@@ -114,7 +120,7 @@ const RecordList = () => {
                     })}
                 </>
               )}
-            </>
+            </S.RecordBox>
           ) : (
             <>
               <FirstRecord />

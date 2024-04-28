@@ -11,7 +11,10 @@ export const currSeasonState = atom({
 
 export const loginState = atom({
   key: "loginState",
-  default: false,
+  default: {
+    isLogin: false,
+    uid: null,
+  },
   effects_UNSTABLE: [persistAtom],
 });
 

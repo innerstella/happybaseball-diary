@@ -23,9 +23,12 @@ import {
 import { Textarea } from "@chakra-ui/react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useRecoilValue } from "recoil";
+import { loginState } from "../../recoil/system";
 
 const CreatePage = () => {
   const navigate = useNavigate();
+  const loginStatus = useRecoilValue(loginState);
 
   const [selected, setSelected] = useState<Date>();
   const [location, setLocation] = useState("");
@@ -35,7 +38,7 @@ const CreatePage = () => {
   const [memo, setMemo] = useState("");
 
   // 유저 정보
-  const uid = sessionStorage.getItem("uid");
+  const uid = loginStatus.uid;
 
   //등록하기
   const create = () => {

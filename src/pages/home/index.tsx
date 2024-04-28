@@ -8,6 +8,7 @@ import Button from "./components/CreateButton";
 import LoginPage from "../login";
 import { useRecoilState } from "recoil";
 import { loginState } from "../../recoil/system";
+import Banner from "../../components/Banner";
 
 const HomePage = () => {
   const navigate = useNavigate();
@@ -19,7 +20,6 @@ const HomePage = () => {
   const localUserData = () => {
     for (const key of Object.keys(sessionStorage)) {
       if (key.includes("firebase:authUser:") && typeof key === "string") {
-        setLoginStatus(true);
         return sessionStorage.getItem(key);
       }
     }
@@ -30,18 +30,19 @@ const HomePage = () => {
     if (value && typeof value === "string") {
       data = JSON.parse(value);
       setUserData(data);
-      sessionStorage.setItem("uid", data.uid);
+      setLoginStatus({ isLogin: true, uid: sessionStorage.getItem("uid") });
     }
   }, []);
 
   return (
     <S.MainContainer>
       <TopAppBar page="home" />
+      <S.Banner>
+        <Banner />
+      </S.Banner>
       {loginStatus ? (
         <>
-          <div className="padding">
-            <RecordList />
-          </div>
+          <RecordList />
           <S.FabContainer>
             <Button text="기록하기" onClick={() => navigate("/create")} />
           </S.FabContainer>

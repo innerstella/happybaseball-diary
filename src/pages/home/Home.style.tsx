@@ -5,11 +5,12 @@ export const MainContainer = styled.div`
   padding: 50px 20px;
   background-color: #fafafa;
   font-family: "SUIT", sans-serif;
-  overflow-x: hidden;
+  overflow: hidden;
 
   display: flex;
   align-items: center;
   flex-direction: column;
+  gap: 1rem;
 
   &::-webkit-scrollbar {
     display: none;
@@ -27,4 +28,9 @@ export const FabContainer = styled.div`
   justify-content: center;
 
   z-index: 5;
+`;
+
+export const Banner = styled.div`
+  width: 100%;
+  padding: 1rem 0;
 `;
