@@ -70,6 +70,7 @@ const RecordList = () => {
         </div>
       ) : (
         <>
+          <p className="text">🏆 {winningRate}</p>
           <S.SeasonTap>
             {seasonList.map((season) => {
               return (
@@ -95,7 +96,6 @@ const RecordList = () => {
                 </div>
               ) : (
                 <>
-                  <p className="text">🏆 {winningRate}</p>
                   {userData
                     .filter(
                       (elem) =>
