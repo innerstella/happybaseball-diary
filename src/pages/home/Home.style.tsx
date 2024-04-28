@@ -23,10 +23,6 @@ export const FabContainer = styled.div`
   justify-content: center;
   height: 5rem;
   bottom: 0rem;
-
-  display: flex;
-  justify-content: center;
-
   z-index: 5;
 `;
 

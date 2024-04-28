@@ -225,10 +225,10 @@ const CreatePage = () => {
           />
           {/* 기록하기 버튼*/}
         </div>
+        <S.FabContainer>
+          <Button text="기록하기" onClick={() => create()} />
+        </S.FabContainer>
       </S.MainContainer>
-      <S.FabContainer>
-        <Button text="기록하기" onClick={() => create()} />
-      </S.FabContainer>
     </>
   );
 };
