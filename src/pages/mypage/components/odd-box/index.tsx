@@ -5,7 +5,7 @@ const OddBox = ({ odd, team }: { odd: number; team: string }) => {
     <S.Container>
       <p>{team} 직관 승률</p>
       <p>
-        <span>{odd}</span>
+        <span>{isNaN(odd) ? "0.000" : odd}</span>
       </p>
     </S.Container>
   );

@@ -30,7 +30,7 @@ const MyTeam = () => {
       myTeam: getWinningRate(myData, CURR_YEAR),
       otherTeam: getWinningRate(otherData, CURR_YEAR),
     });
-  }, []);
+  }, [teamData]);
 
   return (
     <Container>
