@@ -10,15 +10,15 @@ const AppRouter = () => {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route element={<PrivateRouter />}>
-          <Route path="/create" element={<CreatePage />} />
-        </Route>
-        <Route element={<PrivateRouter />}>
-          <Route path="/mypage" element={<MyPage />} />
-        </Route>
-        <Route element={<PrivateRouter />}>
-          <Route path="/detail/:id" element={<DetailPage />} />
-        </Route>
+        {/* <Route element={<PrivateRouter />}> */}
+        <Route path="/create" element={<CreatePage />} />
+        {/* </Route> */}
+        {/* <Route element={<PrivateRouter />}> */}
+        <Route path="/mypage" element={<MyPage />} />
+        {/* </Route> */}
+        {/* <Route element={<PrivateRouter />}> */}
+        <Route path="/detail/:id" element={<DetailPage />} />
+        {/* </Route> */}
       </Routes>
     </BrowserRouter>
   );

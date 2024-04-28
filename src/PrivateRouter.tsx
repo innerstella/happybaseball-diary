@@ -4,8 +4,9 @@ import HomePage from "./pages/home";
 
 const PrivateRouter = () => {
   const isLogin = sessionStorage.getItem("firebase:authUser:");
+  console.log(isLogin);
 
-  if (isLogin) {
+  if (isLogin && isLogin.length > 0) {
     return <Outlet />;
   } else {
     return <HomePage />;
