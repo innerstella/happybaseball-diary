@@ -4,6 +4,14 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  width: 100%;
+
+  .spinner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40vh;
+  }
 
   .text {
     color: #000;
@@ -27,6 +35,7 @@ export const RecordBox = styled.div`
   flex-direction: column;
   gap: 1rem;
   height: 60vh;
+  width: auto;
   padding-bottom: 20vh;
   overflow-y: scroll;
   &::-webkit-scrollbar {
