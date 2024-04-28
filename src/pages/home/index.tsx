@@ -40,7 +40,7 @@ const HomePage = () => {
       <S.Banner>
         <Banner />
       </S.Banner>
-      {loginStatus ? (
+      {loginStatus.isLogin === true ? (
         <>
           <RecordList />
           <S.FabContainer>
