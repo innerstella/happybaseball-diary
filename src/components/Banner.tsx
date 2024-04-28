@@ -8,7 +8,7 @@ import { styled } from "styled-components";
 
 const Banner = () => {
   const bannerSettings = {
-    spaceBetween: 30,
+    // spaceBetween: 30,
     modules: [Autoplay, Pagination, Navigation],
     centeredSlides: true,
     autoplay: {
@@ -37,6 +37,7 @@ const Banner = () => {
 export default Banner;
 
 const BannerContainer = styled.div`
+  padding-left: 20px;
   .banner {
     width: 340px;
     height: 85px;
