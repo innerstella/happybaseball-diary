@@ -61,7 +61,7 @@ const CreatePage = () => {
       count = 0;
     }
 
-    if (date && location && vs) {
+    if (date && location && vs && my) {
       const data = {
         realDate: selected,
         date: date,
@@ -115,15 +115,6 @@ const CreatePage = () => {
                 </option>
               );
             })}
-            <option value="고척">고척</option>
-            <option value="라팍">라팍</option>
-            <option value="랜필">랜필</option>
-            <option value="사직">사직</option>
-            <option value="이팍">이팍</option>
-            <option value="엔팍">엔팍</option>
-            <option value="위팍">위팍</option>
-            <option value="잠실">잠실</option>
-            <option value="챔필">챔필</option>
           </Select>
           {/* 응원팀을 선택해주세요 */}
           <div className="gap"></div>
