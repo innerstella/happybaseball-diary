@@ -29,11 +29,10 @@ export const signInGoogle = () => {
     return auth
       .signInWithPopup(authService, provider)
       .then((res) => {
-        console.log(res);
         window.location.reload();
       })
       .catch((err) => {
-        console.log(err);
+        console.error(err);
       });
   });
 };
