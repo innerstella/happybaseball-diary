@@ -1,9 +1,8 @@
 import styled from "styled-components";
 
 export const MainContainer = styled.div`
-  padding-top: 50px;
   height: 100vh;
-  padding-bottom: 10rem;
+  padding: 50px 20px;
   background-color: #fafafa;
   font-family: "SUIT", sans-serif;
   overflow-x: hidden;

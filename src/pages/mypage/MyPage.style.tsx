@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const MainContainer = styled.div`
-  padding: 50px 25px 10rem 25px;
+  padding: 50px 20px;
   width: 100vw;
   height: 100vh;
   background-color: #fafafa;
@@ -11,14 +11,10 @@ export const MainContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 2rem;
+`;
 
-  .gap {
-    margin-top: 3rem;
-  }
-
-  .banner {
-    width: 100%;
-  }
+export const Banner = styled.div`
+  width: 100%;
 `;
 
 export const Odds = styled.div`

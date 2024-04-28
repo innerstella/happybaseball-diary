@@ -5,7 +5,6 @@ export const Container = styled.div`
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  padding: 0 20px;
   .svg {
     height: 1.875rem;
     cursor: pointer;

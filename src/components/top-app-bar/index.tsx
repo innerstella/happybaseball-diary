@@ -61,7 +61,7 @@ const TopAppBar = ({
       {page === "mypage" && (
         <>
           <img
-            onClick={() => navigate("/")}
+            onClick={() => navigate(-1)}
             src="assets/svg/ic-outline-back.svg"
             alt="back"
             className="svg"
@@ -77,7 +77,7 @@ const TopAppBar = ({
       {page === "detail" && (
         <>
           <img
-            onClick={() => navigate("/")}
+            onClick={() => navigate(-1)}
             src="/assets/svg/ic-outline-back.svg"
             alt="back"
             className="svg"

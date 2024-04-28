@@ -2,16 +2,19 @@ import * as S from "./MyPage.style";
 import { useRecoilValue } from "recoil";
 
 import TopAppBar from "../../components/top-app-bar";
-import OddBox from "./components/OddBox";
 import Banner from "../../components/Banner";
-import Lottery from "../lottery/components/Lottery";
 import { userDataState } from "../../recoil/system";
 import InfoBox from "./components/info-box";
 import { useEffect, useState } from "react";
+import TeamMenu from "./components/team-menu";
+import RecordList from "../home/components/record-list";
+import MyTeam from "./components/my-team";
+import OtherTeam from "./components/other-team";
 
 const MyPage = () => {
   const userData = useRecoilValue(userDataState);
   const [currSeasonData, setCurrentSeasonData] = useState([]);
+  const [currMenu, setCurrMenu] = useState(0);
 
   useEffect(() => {
     const currSeason = userData.filter((data: any) => {
@@ -24,21 +27,12 @@ const MyPage = () => {
   return (
     <S.MainContainer>
       <TopAppBar page="mypage" />
-      <div className="banner">
+      <S.Banner>
         <Banner />
-      </div>
+      </S.Banner>
       <InfoBox count={currSeasonData.length} />
-      {/* <S.Odds>
-        <p className="title">24 시즌</p>
-     
-          <OddBox ratio={winningRate24} />
-      </S.Odds>
-      <S.Odds>
-        <p className="title">23 시즌</p>
-       
-          <OddBox ratio={winningRate23} />
-      </S.Odds> */}
-      {/* <Lottery /> */}
+      <TeamMenu currMenu={currMenu} setCurrMenu={setCurrMenu} />
+      {currMenu === 0 ? <MyTeam /> : <OtherTeam />}
     </S.MainContainer>
   );
 };
