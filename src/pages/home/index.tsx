@@ -4,7 +4,7 @@ import { styled } from "styled-components";
 
 import TopAppBar from "../../components/top-app-bar";
 import FirstRecord from "./components/FirstRecord";
-import RecordList from "./components/RecordList";
+import RecordList from "./components/record-list";
 import Button from "./components/CreateButton";
 import LoginPage from "../login";
 

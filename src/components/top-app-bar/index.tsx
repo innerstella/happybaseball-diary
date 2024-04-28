@@ -17,7 +17,6 @@ const TopAppBar = ({
 
   // 문서 삭제
   const delRec = () => {
-    console.log(docID);
     uid && docID && deleteDoc(doc(dbService, uid, docID));
     navigate("/");
   };
@@ -27,10 +26,9 @@ const TopAppBar = ({
     const auth = getAuth();
     signOut(auth)
       .then(() => {
-        console.log("logout");
         navigate("/");
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.error(err));
   };
   return (
     <S.Container>
@@ -63,7 +61,6 @@ const TopAppBar = ({
             alt="back"
             className="svg"
           />
-          {/* <p className="title"></p> */}
           <img
             src="assets/svg/ic-outline-logout.svg"
             alt="logout"
@@ -81,11 +78,6 @@ const TopAppBar = ({
             className="svg"
           />
           <div className="row">
-            {/* <img
-              src="assets/svg/ic-outline-pencil.svg"
-              alt="pencil"
-              className="svg"
-            /> */}
             <img
               src="/assets/svg/ic-outline-delete.svg"
               alt="delete"
