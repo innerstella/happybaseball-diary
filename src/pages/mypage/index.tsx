@@ -13,6 +13,7 @@ import { dbService } from "../../firebase";
 import Modal from "../../components/modal";
 import { Select } from "@chakra-ui/react";
 import { NewUserType } from "../../types/user";
+import { TEAM_COLOR } from "../../constants/team";
 
 const MyPage = () => {
   const userData = useRecoilValue(userDataState);
@@ -35,10 +36,6 @@ const MyPage = () => {
     setCurrentSeasonData(currSeason);
   }, []);
 
-  useEffect(() => {
-    getUserData();
-  }, [isModalOpen]);
-
   const getUserData = async () => {
     const docRef = doc(dbService, "userData", loginStatus.uid);
     const docSnap = await getDoc(docRef);
@@ -50,6 +47,10 @@ const MyPage = () => {
     }
   };
 
+  useEffect(() => {
+    getUserData();
+  }, [isModalOpen]);
+
   const postUserData = async (data: NewUserType) => {
     await setDoc(doc(dbService, "userData", loginStatus.uid), data);
   };
@@ -60,6 +61,7 @@ const MyPage = () => {
     postUserData(newUser);
     setIsModalOpen(false);
   };
+
   return (
     <S.Container>
       <TopAppBar page="mypage" />
@@ -99,24 +101,26 @@ const MyPage = () => {
           </form>
         </Modal>
       )}
-      <S.User>
-        {nickname === "" ? (
-          <div onClick={() => setIsModalOpen(true)}>
+
+      {nickname === "" && team === "" ? (
+        <S.User>
+          <div className="box" onClick={() => setIsModalOpen(true)}>
             <img src="assets/svg/ic-outline-pencil.svg" alt="등록" />
             <p>닉네임 & 응원하는 팀 등록하기</p>
           </div>
-        ) : (
-          <>
-            <span>🐯</span>
-            <span>{nickname}</span>
-            <img
-              src="assets/svg/ic-outline-pencil.svg"
-              alt="수정"
-              onClick={() => setIsModalOpen(true)}
-            />
-          </>
-        )}
-      </S.User>
+        </S.User>
+      ) : (
+        <S.User>
+          <S.TeamIcon team={TEAM_COLOR[team]}></S.TeamIcon>
+          <span>{nickname}</span>
+          <img
+            src="assets/svg/ic-outline-pencil.svg"
+            alt="수정"
+            onClick={() => setIsModalOpen(true)}
+          />
+        </S.User>
+      )}
+
       <InfoBox count={currSeasonData.length} />
       <TeamMenu currMenu={currMenu} setCurrMenu={setCurrMenu} />
       {currMenu === 0 ? <MyTeam /> : <OtherTeam />}

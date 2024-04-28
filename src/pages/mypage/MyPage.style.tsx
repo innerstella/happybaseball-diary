@@ -14,6 +14,8 @@ export const Container = styled.div`
 
 export const User = styled.div`
   display: flex;
+  justify-content: flex-start;
+  align-items: center;
   gap: 0.5rem;
   span {
     font-size: 1.4rem;
@@ -22,7 +24,7 @@ export const User = styled.div`
   img {
     width: 20px;
   }
-  div {
+  .box {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -33,4 +35,11 @@ export const User = styled.div`
     padding: 10px 0;
     cursor: pointer;
   }
+`;
+
+export const TeamIcon = styled.div<{ team: string }>`
+  background-color: ${(props) => props.team};
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
 `;
