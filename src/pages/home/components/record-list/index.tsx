@@ -1,20 +1,31 @@
 import { useEffect, useState } from "react";
-import { styled } from "styled-components";
-import Record from "./Record";
+import * as S from "./RecordList.style";
+import Record from "../Record";
 
 // firebase
 import { collection, getDocs } from "firebase/firestore";
-import { dbService } from "../../../firebase";
+import { dbService } from "../../../../firebase";
 
 // ui
 import { Spinner } from "@chakra-ui/react";
-import FirstRecord from "./FirstRecord";
+import FirstRecord from "../FirstRecord";
 import { useRecoilState } from "recoil";
-import { winningRate23State } from "../../../atom";
-import { winningRate24State } from "../../../atom";
+import { winningRate23State } from "../../../../recoil/winningRate";
+import { winningRate24State } from "../../../../recoil/winningRate";
+import SeasonChip from "../../../../components/chip/season-chip";
+import { currSeasonState } from "../../../../recoil/system";
 
 const RecordList = () => {
+  const [currSeason, setCurrSeason] = useRecoilState(currSeasonState);
+  // 승률 계산
+  const [winningRate23, setWinningRate23] = useRecoilState(winningRate23State);
+  const [winningRate24, setWinningRate24] = useRecoilState(winningRate24State);
+
   const [isLoading, setIsLoading] = useState(true);
+  // const [currSeason, setCurrSeason] = useState(2024); // [2024, 2023]
+  const [winningRate, setWinningRate] = useState(winningRate24); // [2024, 2023]
+
+  const seasonList = [2024, 2023];
   // 유저 정보
   const uid = sessionStorage.getItem("uid");
   const [userData, setUserData] = useState<any[]>([]);
@@ -43,10 +54,6 @@ const RecordList = () => {
     }
   }, []);
 
-  // 승률 계산
-  const [winningRate23, setWinningRate23] = useRecoilState(winningRate23State);
-  const [winningRate24, setWinningRate24] = useRecoilState(winningRate24State);
-
   useEffect(() => {
     let season24 = [0, 0]; // sum, cnt
     let season23 = [0, 0];
@@ -72,8 +79,16 @@ const RecordList = () => {
     }
   }, [userData]);
 
+  useEffect(() => {
+    if (currSeason === 2024) {
+      setWinningRate(winningRate24);
+    } else if (currSeason === 2023) {
+      setWinningRate(winningRate23);
+    }
+  }, [currSeason]);
+
   return (
-    <Container>
+    <S.Container>
       {isLoading ? (
         <div className="padding">
           <Spinner
@@ -86,9 +101,20 @@ const RecordList = () => {
         </div>
       ) : (
         <>
+          <S.SeasonTap>
+            {seasonList.map((season) => {
+              return (
+                <SeasonChip
+                  key={season}
+                  season={season}
+                  onClick={() => setCurrSeason(season)}
+                />
+              );
+            })}
+          </S.SeasonTap>
           {userData.length > 0 ? (
             <>
-              {winningRate23 === "NaN" ? (
+              {winningRate === "NaN" ? (
                 <div className="padding">
                   <Spinner
                     thickness="4px"
@@ -100,7 +126,7 @@ const RecordList = () => {
                 </div>
               ) : (
                 <>
-                  <p className="text">🏆 {winningRate24}</p>
+                  <p className="text">🏆 {winningRate}</p>
                   {userData.map((data, id) => {
                     return (
                       <Record
@@ -122,30 +148,8 @@ const RecordList = () => {
           )}
         </>
       )}
-    </Container>
+    </S.Container>
   );
 };
 
 export default RecordList;
-
-const Container = styled.div`
-  margin-top: 3rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  .padding {
-    margin-top: 30vh;
-    display: flex;
-    justify-content: center;
-  }
-
-  .text {
-    color: #000;
-    font-family: "SUIT", sans-serif;
-    font-size: 1.6875rem;
-    font-style: normal;
-    font-weight: 500;
-    line-height: normal;
-    margin: 0;
-  }
-`;
