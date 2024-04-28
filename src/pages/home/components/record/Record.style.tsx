@@ -4,7 +4,7 @@ export const Container = styled.div`
   display: flex;
   flex-direction: row;
   .card-box {
-    width: 80vw;
+    width: 100%;
 
     padding: 1.25rem 1.5rem;
     border-radius: 0.625rem;

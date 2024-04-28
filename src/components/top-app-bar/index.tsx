@@ -42,6 +42,12 @@ const TopAppBar = ({
           /> */}
           <p className="title">⚾️ 직관일기</p>
           <img
+            src="assets/svg/ic-outline-logout.svg"
+            alt="logout"
+            className="svg"
+            onClick={() => logout()}
+          />
+          {/* <img
             src="assets/svg/ic-solid-question.svg"
             alt="user"
             className="svg"
@@ -50,7 +56,7 @@ const TopAppBar = ({
                 "https://innerstella.notion.site/dda1def259cd4f5cbcd1ca6b229e7f5a?pvs=4"
               )
             }
-          />
+          /> */}
         </>
       )}
       {page === "mypage" && (

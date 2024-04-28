@@ -15,9 +15,7 @@ export const MainContainer = styled.div`
 
 export const FabContainer = styled.div`
   position: fixed;
-
   display: flex;
-  width: 100vw;
   justify-content: center;
   height: 5rem;
   bottom: 0rem;
