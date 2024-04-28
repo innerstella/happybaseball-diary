@@ -2,11 +2,10 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   padding: 50px 20px;
-  width: 100vw;
   height: 100vh;
   background-color: #fafafa;
   font-family: "SUIT", sans-serif;
-  overflow-x: hidden;
+  overflow: hidden;
 
   display: flex;
   flex-direction: column;
