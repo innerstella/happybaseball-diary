@@ -10,6 +10,10 @@ export const MainContainer = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 export const FabContainer = styled.div`
