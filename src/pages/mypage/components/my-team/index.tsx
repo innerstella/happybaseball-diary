@@ -1,22 +1,27 @@
 import { useRecoilValue } from "recoil";
-import { userDataState } from "../../../../recoil/system";
+import { teamState, userDataState } from "../../../../recoil/system";
 import { useEffect, useState } from "react";
 import Record from "../../../home/components/record/Record";
 import styled from "styled-components";
 
 const MyTeam = () => {
   const userData = useRecoilValue(userDataState);
+  const teamData = useRecoilValue(teamState);
   const [myTeamData, setMyTeamData] = useState([]);
 
   useEffect(() => {
-    //TODO: 우리팀 데이터만 가져오기
+    const data = userData.filter((data: any) => {
+      if (data.my === teamData || data.my === undefined) {
+        return data;
+      }
+    });
 
-    setMyTeamData(userData);
+    setMyTeamData(data);
   }, []);
 
   return (
     <Container>
-      {userData.map((data: any, idx: number) => {
+      {myTeamData.map((data: any, idx: number) => {
         return (
           <Record
             key={data.date}

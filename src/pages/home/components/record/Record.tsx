@@ -5,11 +5,12 @@ import * as S from "./Record.style";
 type Props = {
   date: string;
   location: string;
+  my?: string;
   vs: string;
   score: number[];
 };
 
-const Record = ({ date, location, vs, score }: Props) => {
+const Record = ({ date, location, my, vs, score }: Props) => {
   const navigate = useNavigate();
   // 경기 결과 계산 (1:win, 2: lose, 3:draw)
   const [result, setResult] = useState(0);
@@ -46,10 +47,20 @@ const Record = ({ date, location, vs, score }: Props) => {
             />
             <p className="text">{location}</p>
           </div>
+          {my && (
+            <div className="label-box">
+              <img
+                src="/assets/svg/ic-heart.svg"
+                alt="응원팀"
+                className="svg"
+              />
+              <p className="text">{my}</p>
+            </div>
+          )}
           <div className="label-box">
             <img
-              src="/assets/svg/ic-solid-game.svg"
-              alt="location"
+              src="/assets/svg/ic-solid-fire.svg"
+              alt="상대팀"
               className="svg"
             />
             <p className="text">{vs}</p>
