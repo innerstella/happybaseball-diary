@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { styled } from "styled-components";
+import * as S from "./Home.style";
 
 import TopAppBar from "../../components/top-app-bar";
-import FirstRecord from "./components/FirstRecord";
 import RecordList from "./components/record-list";
 import Button from "./components/CreateButton";
 import LoginPage from "../login";
@@ -34,58 +33,24 @@ const HomePage = () => {
   }, []);
 
   return (
-    <MainContainer>
-      <div className="padding">
-        <TopAppBar page="home" />
-      </div>
+    <S.MainContainer>
+      <TopAppBar page="home" />
       {isLoggedIn ? (
         <>
           <div className="padding">
             <RecordList />
           </div>
-          <FabContainer>
+          <S.FabContainer>
             <Button text="기록하기" onClick={() => navigate("/create")} />
-          </FabContainer>
+          </S.FabContainer>
         </>
       ) : (
         <>
           <LoginPage />
         </>
       )}
-    </MainContainer>
+    </S.MainContainer>
   );
 };
 
 export default HomePage;
-
-const MainContainer = styled.div`
-  padding-top: 50px;
-  height: 100vh;
-  padding-bottom: 10rem;
-  background-color: #fafafa;
-  font-family: "SUIT", sans-serif;
-  overflow-x: hidden;
-
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  .padding {
-    padding: 0 25px;
-  }
-`;
-
-export const FabContainer = styled.div`
-  position: fixed;
-  /* width: 80vw; */
-
-  display: flex;
-  width: 100vw;
-  justify-content: center;
-  height: 5rem;
-  bottom: 0rem;
-
-  display: flex;
-  justify-content: center;
-
-  z-index: 5;
-`;

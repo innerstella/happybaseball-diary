@@ -34,13 +34,13 @@ const TopAppBar = ({
     <S.Container>
       {page === "home" && (
         <>
-          <img
+          {/* <img
             onClick={() => navigate("/mypage")}
             src="assets/svg/ic-solid-user.svg"
             alt="user"
             className="svg"
-          />
-          <p className="title">직관일기</p>
+          /> */}
+          <p className="title">⚾️ 직관일기</p>
           <img
             src="assets/svg/ic-solid-question.svg"
             alt="user"
