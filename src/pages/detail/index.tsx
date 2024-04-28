@@ -1,5 +1,5 @@
 import { styled } from "styled-components";
-import TopAppBar from "../../components/TopAppBar";
+import TopAppBar from "../../components/top-app-bar";
 import { useEffect, useState } from "react";
 import { collection, getDocs } from "firebase/firestore";
 import { dbService } from "../../firebase";

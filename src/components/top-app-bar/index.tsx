@@ -1,8 +1,8 @@
 import { deleteDoc, doc } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
-import { styled } from "styled-components";
-import { dbService } from "../firebase";
+import { dbService } from "../../firebase";
 import { getAuth, signOut } from "firebase/auth";
+import * as S from "./TopAppBar.style";
 
 const TopAppBar = ({
   page,
@@ -33,7 +33,7 @@ const TopAppBar = ({
       .catch((err) => console.log(err));
   };
   return (
-    <Container>
+    <S.Container>
       {page === "home" && (
         <>
           <img
@@ -95,30 +95,8 @@ const TopAppBar = ({
           </div>
         </>
       )}
-    </Container>
+    </S.Container>
   );
 };
 
 export default TopAppBar;
-
-const Container = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  .svg {
-    height: 1.875rem;
-  }
-  .title {
-    color: #000;
-    font-family: Inter;
-    font-size: 1.875rem;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
-  }
-  .row {
-    display: flex;
-    flex-direction: row;
-    gap: 1rem;
-  }
-`;

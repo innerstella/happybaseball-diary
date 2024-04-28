@@ -3,7 +3,7 @@ import { useRecoilValue } from "recoil";
 
 import { winningRate23State, winningRate24State } from "../../atom";
 
-import TopAppBar from "../../components/TopAppBar";
+import TopAppBar from "../../components/top-app-bar";
 import OddBox from "./components/OddBox";
 import Banner from "../../components/Banner";
 import Lottery from "../lottery/components/Lottery";

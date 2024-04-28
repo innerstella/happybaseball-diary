@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { styled } from "styled-components";
 
-import TopAppBar from "../../components/TopAppBar";
+import TopAppBar from "../../components/top-app-bar";
 import FirstRecord from "./components/FirstRecord";
 import RecordList from "./components/RecordList";
 import Button from "./components/CreateButton";
@@ -59,7 +59,6 @@ const HomePage = () => {
 export default HomePage;
 
 const MainContainer = styled.div`
-  /* width: 100vw; */
   padding-top: 50px;
   height: 100vh;
   padding-bottom: 10rem;
@@ -68,6 +67,7 @@ const MainContainer = styled.div`
   overflow-x: hidden;
 
   display: flex;
+  align-items: center;
   flex-direction: column;
   .padding {
     padding: 0 25px;
