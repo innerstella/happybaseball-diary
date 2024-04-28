@@ -16,6 +16,8 @@ export default BackBar;
 
 const Container = styled.div`
   margin-top: 50px;
+  display: flex;
+  width: 100%;
   .svg {
     height: 1.875rem;
   }

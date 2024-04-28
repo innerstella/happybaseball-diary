@@ -4,6 +4,11 @@ export const MainContainer = styled.div`
   padding: 0 25px;
   padding-bottom: 10rem;
   height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* justify-content: center; */
+
   background-color: #fafafa;
   font-family: "SUIT", sans-serif;
   overflow-x: hidden;
@@ -39,8 +44,8 @@ export const MainContainer = styled.div`
 
 export const FabContainer = styled.div`
   position: fixed;
-  display: flex;
-  justify-content: center;
+
+  width: 390px;
   height: 5rem;
   bottom: 0rem;
   z-index: 5;

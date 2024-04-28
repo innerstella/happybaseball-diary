@@ -24,6 +24,7 @@ export const FabContainer = styled.div`
   height: 5rem;
   bottom: 0rem;
   z-index: 5;
+  width: 390px;
 `;
 
 export const Banner = styled.div`
