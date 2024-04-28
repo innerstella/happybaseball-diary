@@ -2,7 +2,12 @@ import * as S from "./MyPage.style";
 import { useRecoilState, useRecoilValue } from "recoil";
 
 import TopAppBar from "../../components/top-app-bar";
-import { loginState, teamState, userDataState } from "../../recoil/system";
+import {
+  loginState,
+  oddState,
+  teamState,
+  userDataState,
+} from "../../recoil/system";
 import InfoBox from "./components/info-box";
 import { FormEvent, useEffect, useState } from "react";
 import TeamMenu from "./components/team-menu";
@@ -14,10 +19,12 @@ import Modal from "../../components/modal";
 import { Select } from "@chakra-ui/react";
 import { NewUserType } from "../../types/user";
 import { TEAM_COLOR, TEAM_LIST } from "../../constants/team";
+import OddBox from "./components/odd-box";
 
 const MyPage = () => {
   const userData = useRecoilValue(userDataState);
   const loginStatus = useRecoilValue(loginState);
+  const oddStatus = useRecoilValue(oddState);
   const [currSeasonData, setCurrentSeasonData] = useState([]);
   const [currMenu, setCurrMenu] = useState(0);
   const [nickname, setNickname] = useState("");
@@ -116,8 +123,14 @@ const MyPage = () => {
           />
         </S.User>
       )}
-
-      <InfoBox count={currSeasonData.length} />
+      <S.Box>
+        <InfoBox count={currSeasonData.length} />
+        <S.OddBox>
+          <OddBox odd={oddStatus.myTeam} team="우리 팀" />
+          <OddBox odd={oddStatus.otherTeam} team="다른 팀" />
+        </S.OddBox>
+        <p>※ 이번 시즌 데이터로만 계산됩니다</p>
+      </S.Box>
       <TeamMenu currMenu={currMenu} setCurrMenu={setCurrMenu} />
       {currMenu === 0 ? <MyTeam /> : <OtherTeam />}
     </S.Container>

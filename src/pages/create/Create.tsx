@@ -169,7 +169,7 @@ const CreatePage = () => {
             <p className="text">경기 결과를 입력해주세요</p>
           </div>
           <div className="label">
-            <p className="text">우리 팀</p>
+            <p className="text">응원 팀</p>
             <NumberInput
               size="sm"
               maxW={20}

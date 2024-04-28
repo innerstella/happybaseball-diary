@@ -29,3 +29,12 @@ export const teamState = atom({
   default: "",
   effects_UNSTABLE: [persistAtom],
 });
+
+export const oddState = atom({
+  key: "oddState",
+  default: {
+    myTeam: "0.000",
+    otherTeam: "0.000",
+  },
+  effects_UNSTABLE: [persistAtom],
+});
