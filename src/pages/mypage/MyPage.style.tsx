@@ -43,3 +43,16 @@ export const TeamIcon = styled.div<{ team: string }>`
   height: 25px;
   border-radius: 50%;
 `;
+
+export const Box = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+`;
+
+export const OddBox = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 1rem;
+`;

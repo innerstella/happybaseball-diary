@@ -25,6 +25,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useRecoilValue } from "recoil";
 import { loginState } from "../../recoil/system";
+import { PLACE_LIST, TEAM_LIST } from "../../constants/team";
 
 const CreatePage = () => {
   const navigate = useNavigate();
@@ -32,6 +33,7 @@ const CreatePage = () => {
 
   const [selected, setSelected] = useState<Date>();
   const [location, setLocation] = useState("");
+  const [my, setMy] = useState("");
   const [vs, setVs] = useState("");
   const [myScore, setMyScore] = useState(0);
   const [vsScore, setVsScore] = useState(0);
@@ -59,11 +61,12 @@ const CreatePage = () => {
       count = 0;
     }
 
-    if (date && location && vs) {
+    if (date && location && vs && my) {
       const data = {
         realDate: selected,
         date: date,
         location: location,
+        my: my,
         vs: vs,
         myScore: myScore,
         vsScore: vsScore,
@@ -105,20 +108,41 @@ const CreatePage = () => {
             isRequired
             onChange={(e) => setLocation(e.target.value)}
           >
-            <option value="고척">고척</option>
-            <option value="라팍">라팍</option>
-            <option value="랜필">랜필</option>
-            <option value="사직">사직</option>
-            <option value="이팍">이팍</option>
-            <option value="엔팍">엔팍</option>
-            <option value="위팍">위팍</option>
-            <option value="잠실">잠실</option>
-            <option value="챔필">챔필</option>
+            {PLACE_LIST.map((place, idx) => {
+              return (
+                <option key={idx} value={place}>
+                  {place}
+                </option>
+              );
+            })}
+          </Select>
+          {/* 응원팀을 선택해주세요 */}
+          <div className="gap"></div>
+          <div className="label">
+            <img src="assets/svg/ic-heart.svg" alt="응원팀" className="svg" />
+            <p className="text">응원 팀을 선택해주세요</p>
+          </div>
+          <Select
+            placeholder="응원 팀"
+            isRequired
+            onChange={(e) => setMy(e.target.value)}
+          >
+            {TEAM_LIST.filter((team) => team !== vs).map((team, idx) => {
+              return (
+                <option key={idx} value={team}>
+                  {team}
+                </option>
+              );
+            })}
           </Select>
           {/* 상대팀을 선택해주세요 */}
           <div className="gap"></div>
           <div className="label">
-            <img src="assets/svg/ic-solid-fire.svg" alt="vs" className="svg" />
+            <img
+              src="assets/svg/ic-solid-fire.svg"
+              alt="상대팀"
+              className="svg"
+            />
             <p className="text">상대 팀을 선택해주세요</p>
           </div>
           <Select
@@ -126,16 +150,13 @@ const CreatePage = () => {
             isRequired
             onChange={(e) => setVs(e.target.value)}
           >
-            <option value="LG">LG</option>
-            <option value="KT">KT</option>
-            <option value="SSG">SSG</option>
-            <option value="NC">NC</option>
-            <option value="두산">두산</option>
-            <option value="KIA">KIA</option>
-            <option value="롯데">롯데</option>
-            <option value="삼성">삼성</option>
-            <option value="한화">한화</option>
-            <option value="키움">키움</option>
+            {TEAM_LIST.filter((team) => team !== my).map((team, idx) => {
+              return (
+                <option key={idx} value={team}>
+                  {team}
+                </option>
+              );
+            })}
           </Select>
           {/* 경기 결과를 입력해주세요*/}
           <div className="gap"></div>
@@ -148,7 +169,7 @@ const CreatePage = () => {
             <p className="text">경기 결과를 입력해주세요</p>
           </div>
           <div className="label">
-            <p className="text">우리 팀</p>
+            <p className="text">응원 팀</p>
             <NumberInput
               size="sm"
               maxW={20}
@@ -195,10 +216,10 @@ const CreatePage = () => {
           />
           {/* 기록하기 버튼*/}
         </div>
+        <S.FabContainer>
+          <Button text="기록하기" onClick={() => create()} />
+        </S.FabContainer>
       </S.MainContainer>
-      <S.FabContainer>
-        <Button text="기록하기" onClick={() => create()} />
-      </S.FabContainer>
     </>
   );
 };

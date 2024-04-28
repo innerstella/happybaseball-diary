@@ -25,6 +25,8 @@ const Container = styled.div`
   border-radius: 0.625rem;
   background: #464646;
 
+  cursor: pointer;
+
   .text {
     margin: 0;
     padding: 1rem;

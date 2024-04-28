@@ -1,20 +1,38 @@
 import { useRecoilValue } from "recoil";
-import { userDataState } from "../../../../recoil/system";
+import { teamState, userDataState } from "../../../../recoil/system";
 import { useEffect, useState } from "react";
 import Record from "../../../home/components/record/Record";
 import styled from "styled-components";
 
 const OtherTeam = () => {
   const userData = useRecoilValue(userDataState);
+  const teamData = useRecoilValue(teamState);
+  const [otherTeamData, setOtherTeamData] = useState([]);
 
   useEffect(() => {
-    //TODO: 다른 팀 데이터만 가져오기
+    const data = userData.filter((data: any) => {
+      if (data.my !== teamData && data.my !== undefined) {
+        return data;
+      }
+    });
+
+    setOtherTeamData(data);
   }, []);
 
   return (
     <Container>
-      <img src="assets/svg/ic-rocket.svg" alt="준비 중" />
-      <p>준비 중</p>
+      {otherTeamData.map((data: any, idx: number) => {
+        return (
+          <Record
+            key={data.date}
+            date={data.date}
+            location={data.location}
+            my={data.my}
+            vs={data.vs}
+            score={[data.myScore, data.vsScore]}
+          />
+        );
+      })}
     </Container>
   );
 };
@@ -24,8 +42,6 @@ export default OtherTeam;
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
   gap: 1rem;
 
   height: 100%;

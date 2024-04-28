@@ -55,7 +55,7 @@ export const Box2 = styled.div`
 `;
 
 export const WinBox = styled.div`
-  width: 10vw;
+  width: 50px;
   height: auto;
   flex-shrink: 0;
   border-radius: 0rem 0.625rem 0.625rem 0rem;
@@ -74,7 +74,7 @@ export const WinBox = styled.div`
 `;
 
 export const LoseBox = styled.div`
-  width: 10vw;
+  width: 50px;
   height: auto;
   flex-shrink: 0;
   border-radius: 0rem 0.625rem 0.625rem 0rem;
@@ -93,7 +93,7 @@ export const LoseBox = styled.div`
 `;
 
 export const DrawBox = styled.div`
-  width: 10vw;
+  width: 50px;
   height: auto;
   flex-shrink: 0;
   border-radius: 0rem 0.625rem 0.625rem 0rem;

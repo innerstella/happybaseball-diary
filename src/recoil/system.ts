@@ -23,3 +23,18 @@ export const userDataState = atom({
   default: [],
   effects_UNSTABLE: [persistAtom],
 });
+
+export const teamState = atom({
+  key: "teamState",
+  default: "",
+  effects_UNSTABLE: [persistAtom],
+});
+
+export const oddState = atom({
+  key: "oddState",
+  default: {
+    myTeam: "0.000",
+    otherTeam: "0.000",
+  },
+  effects_UNSTABLE: [persistAtom],
+});

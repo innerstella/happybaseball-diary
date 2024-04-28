@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import * as S from "./Home.style";
 
 import TopAppBar from "../../components/top-app-bar";
@@ -12,6 +12,9 @@ import Banner from "../../components/Banner";
 
 const HomePage = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+
+  const [reload, setReload] = useState(false);
 
   // 로그인 여부
   const [loginStatus, setLoginStatus] = useRecoilState(loginState);
@@ -24,6 +27,14 @@ const HomePage = () => {
       }
     }
   };
+
+  useEffect(() => {
+    if (location.state?.reload === true) {
+      window.location.reload();
+      navigate("/");
+    }
+  }, []);
+
   useEffect(() => {
     const value = localUserData();
     let data;

@@ -1,27 +1,34 @@
 import * as S from "./MyPage.style";
-import { useRecoilValue } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 
 import TopAppBar from "../../components/top-app-bar";
-import { loginState, userDataState } from "../../recoil/system";
+import {
+  loginState,
+  oddState,
+  teamState,
+  userDataState,
+} from "../../recoil/system";
 import InfoBox from "./components/info-box";
 import { FormEvent, useEffect, useState } from "react";
 import TeamMenu from "./components/team-menu";
 import MyTeam from "./components/my-team";
 import OtherTeam from "./components/other-team";
-import { doc, getDoc, getDocs, setDoc } from "firebase/firestore";
+import { doc, getDoc, setDoc } from "firebase/firestore";
 import { dbService } from "../../firebase";
 import Modal from "../../components/modal";
 import { Select } from "@chakra-ui/react";
 import { NewUserType } from "../../types/user";
-import { TEAM_COLOR } from "../../constants/team";
+import { TEAM_COLOR, TEAM_LIST } from "../../constants/team";
+import OddBox from "./components/odd-box";
 
 const MyPage = () => {
   const userData = useRecoilValue(userDataState);
   const loginStatus = useRecoilValue(loginState);
+  const oddStatus = useRecoilValue(oddState);
   const [currSeasonData, setCurrentSeasonData] = useState([]);
   const [currMenu, setCurrMenu] = useState(0);
   const [nickname, setNickname] = useState("");
-  const [team, setTeam] = useState("");
+  const [team, setTeam] = useRecoilState(teamState);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [newUser, setNewUSer] = useState({
     nickname: "",
@@ -86,22 +93,18 @@ const MyPage = () => {
               isRequired
               onChange={(e) => setNewUSer({ ...newUser, team: e.target.value })}
             >
-              <option value="LG">LG</option>
-              <option value="KT">KT</option>
-              <option value="SSG">SSG</option>
-              <option value="NC">NC</option>
-              <option value="두산">두산</option>
-              <option value="KIA">KIA</option>
-              <option value="롯데">롯데</option>
-              <option value="삼성">삼성</option>
-              <option value="한화">한화</option>
-              <option value="키움">키움</option>
+              {TEAM_LIST.map((team, idx) => {
+                return (
+                  <option key={idx} value={team}>
+                    {team}
+                  </option>
+                );
+              })}
             </Select>
             <button>등록</button>
           </form>
         </Modal>
       )}
-
       {nickname === "" && team === "" ? (
         <S.User>
           <div className="box" onClick={() => setIsModalOpen(true)}>
@@ -120,8 +123,14 @@ const MyPage = () => {
           />
         </S.User>
       )}
-
-      <InfoBox count={currSeasonData.length} />
+      <S.Box>
+        <InfoBox count={currSeasonData.length} />
+        <S.OddBox>
+          <OddBox odd={oddStatus.myTeam} team="우리 팀" />
+          <OddBox odd={oddStatus.otherTeam} team="다른 팀" />
+        </S.OddBox>
+        <p>※ 이번 시즌 데이터로만 계산됩니다</p>
+      </S.Box>
       <TeamMenu currMenu={currMenu} setCurrMenu={setCurrMenu} />
       {currMenu === 0 ? <MyTeam /> : <OtherTeam />}
     </S.Container>
