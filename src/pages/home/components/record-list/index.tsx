@@ -56,6 +56,7 @@ const RecordList = () => {
   }, []);
 
   useEffect(() => {
+    console.log(winningRate);
     if (userData.length > 0) {
       setUserStatus(userData as never[]);
       setWinningRate(getWinningRate(userData, currSeason));
@@ -65,7 +66,7 @@ const RecordList = () => {
   return (
     <S.Container>
       {isLoading ? (
-        <div className="padding">
+        <div className="spinner">
           <Spinner
             thickness="4px"
             speed="1s"
@@ -76,7 +77,9 @@ const RecordList = () => {
         </div>
       ) : (
         <>
-          <p className="text">🏆 {winningRate}</p>
+          <p className="text">
+            🏆 {winningRate === "NaN" ? "0.000" : winningRate}
+          </p>
           <S.SeasonTap>
             {seasonList.map((season) => {
               return (
@@ -91,15 +94,16 @@ const RecordList = () => {
           {userData.length > 0 ? (
             <S.RecordBox>
               {winningRate === "NaN" ? (
-                <div>
-                  <Spinner
-                    thickness="4px"
-                    speed="1s"
-                    emptyColor="gray.200"
-                    color="#464646"
-                    size="xl"
-                  />
-                </div>
+                // <div>
+                //   <Spinner
+                //     thickness="4px"
+                //     speed="1s"
+                //     emptyColor="gray.200"
+                //     color="#464646"
+                //     size="xl"
+                //   />
+                // </div>
+                <FirstRecord />
               ) : (
                 <>
                   {userData

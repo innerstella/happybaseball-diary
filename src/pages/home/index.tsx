@@ -30,7 +30,6 @@ const HomePage = () => {
     if (value && typeof value === "string") {
       data = JSON.parse(value);
       setUserData(data);
-      console.log(data);
       setLoginStatus({ isLogin: true, uid: data.uid });
     }
   }, []);
