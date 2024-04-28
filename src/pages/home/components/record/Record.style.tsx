@@ -48,7 +48,7 @@ export const Box1 = styled.div`
 export const Box2 = styled.div`
   color: #4a5568;
   font-family: "SUIT", sans-serif;
-  font-size: 2.3rem;
+  font-size: 2rem;
   font-style: normal;
   font-weight: 700;
   line-height: normal;
