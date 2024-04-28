@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { dbService } from "../../firebase";
 import { getAuth, signOut } from "firebase/auth";
 import * as S from "./TopAppBar.style";
+import { useRecoilValue } from "recoil";
+import { loginState } from "../../recoil/system";
 
 const TopAppBar = ({
   page,
@@ -14,6 +16,7 @@ const TopAppBar = ({
   uid?: string;
 }) => {
   const navigate = useNavigate();
+  const loginStatus = useRecoilValue(loginState);
 
   // 문서 삭제
   const delRec = () => {
@@ -34,19 +37,15 @@ const TopAppBar = ({
     <S.Container>
       {page === "home" && (
         <>
-          {/* <img
-            onClick={() => navigate("/mypage")}
-            src="assets/svg/ic-solid-user.svg"
-            alt="user"
-            className="svg"
-          /> */}
-          <p className="title">⚾️ 직관일기</p>
-          <img
-            src="assets/svg/ic-outline-logout.svg"
-            alt="logout"
-            className="svg"
-            onClick={() => logout()}
-          />
+          <h1 className="title">⚾️ 직관일기</h1>
+          {loginStatus === true && (
+            <img
+              onClick={() => navigate("/mypage")}
+              src="assets/svg/ic-solid-user.svg"
+              alt="user"
+              className="svg"
+            />
+          )}
           {/* <img
             src="assets/svg/ic-solid-question.svg"
             alt="user"

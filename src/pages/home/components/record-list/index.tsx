@@ -11,12 +11,13 @@ import { dbService } from "../../../../firebase";
 import { Spinner } from "@chakra-ui/react";
 import FirstRecord from "../FirstRecord";
 import SeasonChip from "../../../../components/chip/season-chip";
-import { currSeasonState } from "../../../../recoil/system";
+import { currSeasonState, userDataState } from "../../../../recoil/system";
 import getWinningRate from "../../../../utils/getWinningRate";
 
 const RecordList = () => {
   const seasonList = [2024, 2023];
   const [currSeason, setCurrSeason] = useRecoilState(currSeasonState);
+  const [userStatus, setUserStatus] = useRecoilState(userDataState);
   const [isLoading, setIsLoading] = useState(true);
   const [winningRate, setWinningRate] = useState("0.000");
 
@@ -50,6 +51,7 @@ const RecordList = () => {
 
   useEffect(() => {
     if (userData.length > 0) {
+      setUserStatus(userData as never[]);
       setWinningRate(getWinningRate(userData, currSeason));
     }
   }, [userData, currSeason]);

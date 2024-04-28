@@ -8,6 +8,10 @@ export const MainContainer = styled.div`
   font-family: "SUIT", sans-serif;
   overflow-x: hidden;
 
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+
   .gap {
     margin-top: 3rem;
   }

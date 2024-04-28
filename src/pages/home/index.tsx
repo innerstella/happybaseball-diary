@@ -6,18 +6,20 @@ import TopAppBar from "../../components/top-app-bar";
 import RecordList from "./components/record-list";
 import Button from "./components/CreateButton";
 import LoginPage from "../login";
+import { useRecoilState } from "recoil";
+import { loginState } from "../../recoil/system";
 
 const HomePage = () => {
   const navigate = useNavigate();
 
   // 로그인 여부
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [loginStatus, setLoginStatus] = useRecoilState(loginState);
   const [userData, setUserData] = useState();
 
   const localUserData = () => {
     for (const key of Object.keys(sessionStorage)) {
       if (key.includes("firebase:authUser:") && typeof key === "string") {
-        setIsLoggedIn(true);
+        setLoginStatus(true);
         return sessionStorage.getItem(key);
       }
     }
@@ -35,7 +37,7 @@ const HomePage = () => {
   return (
     <S.MainContainer>
       <TopAppBar page="home" />
-      {isLoggedIn ? (
+      {loginStatus ? (
         <>
           <div className="padding">
             <RecordList />

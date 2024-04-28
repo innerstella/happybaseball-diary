@@ -5,18 +5,29 @@ import TopAppBar from "../../components/top-app-bar";
 import OddBox from "./components/OddBox";
 import Banner from "../../components/Banner";
 import Lottery from "../lottery/components/Lottery";
+import { userDataState } from "../../recoil/system";
+import InfoBox from "./components/info-box";
+import { useEffect, useState } from "react";
 
 const MyPage = () => {
-  // const userData = useRecoilValue(userdata)
+  const userData = useRecoilValue(userDataState);
+  const [currSeasonData, setCurrentSeasonData] = useState([]);
+
+  useEffect(() => {
+    const currSeason = userData.filter((data: any) => {
+      if (data.date.slice(0, 2) === "24") return data;
+    });
+
+    setCurrentSeasonData(currSeason);
+  }, []);
 
   return (
     <S.MainContainer>
       <TopAppBar page="mypage" />
-      <div className="gap">
-        <div className="banner">
-          <Banner />
-        </div>
+      <div className="banner">
+        <Banner />
       </div>
+      <InfoBox count={currSeasonData.length} />
       {/* <S.Odds>
         <p className="title">24 시즌</p>
      
@@ -27,8 +38,7 @@ const MyPage = () => {
        
           <OddBox ratio={winningRate23} />
       </S.Odds> */}
-      <div className="gap"></div>
-      <Lottery />
+      {/* <Lottery /> */}
     </S.MainContainer>
   );
 };
