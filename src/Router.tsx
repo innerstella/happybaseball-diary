@@ -14,7 +14,7 @@ const AppRouter = () => {
         <Route path="/create" element={<CreatePage />} />
         {/* </Route> */}
         {/* <Route element={<PrivateRouter />}> */}
-        <Route path="/mypage" element={<MyPage />} />
+        {/* <Route path="/mypage" element={<MyPage />} /> */}
         {/* </Route> */}
         {/* <Route element={<PrivateRouter />}> */}
         <Route path="/detail/:id" element={<DetailPage />} />
