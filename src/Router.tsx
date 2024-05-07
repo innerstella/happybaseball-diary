@@ -4,10 +4,12 @@ import CreatePage from "./pages/create/Create";
 import MyPage from "./pages/mypage";
 import DetailPage from "./pages/detail";
 import PrivateRouter from "./PrivateRouter";
+import GlobalStyles from "./GlobalStyles";
 
 const AppRouter = () => {
   return (
     <BrowserRouter>
+      <GlobalStyles />
       <Routes>
         <Route path="/" element={<HomePage />} />
         {/* <Route element={<PrivateRouter />}> */}
