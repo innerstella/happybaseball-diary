@@ -1,7 +1,7 @@
 import { styled } from "styled-components";
 import TopAppBar from "../../components/top-app-bar";
 import { useEffect, useState } from "react";
-import { collection, getDocs } from "firebase/firestore";
+import { DocumentData, collection, getDocs } from "firebase/firestore";
 import { dbService } from "../../firebase";
 import { useParams } from "react-router-dom";
 import Record from "../home/components/record/Record";
@@ -10,16 +10,7 @@ import Record from "../home/components/record/Record";
 import { Spinner } from "@chakra-ui/react";
 import { useRecoilValue } from "recoil";
 import { loginState } from "../../recoil/system";
-
-type Props = {
-  date: string;
-  location: string;
-  my?: string;
-  vs: string;
-  myScore: number;
-  vsScore: number;
-  memo: string;
-};
+import { UserType } from "../../types/user";
 
 const DetailPage = () => {
   const { id } = useParams();
@@ -27,8 +18,8 @@ const DetailPage = () => {
 
   // 유저 정보
   const uid = loginStatus.uid;
-  const [userData, setUserData] = useState<any[]>([]);
-  let newUserData: any[] = [];
+  const [userData, setUserData] = useState<UserType[] | DocumentData[]>([]);
+  let newUserData: DocumentData[] = [];
   const [docID, setDocID] = useState("");
 
   useEffect(() => {
@@ -57,7 +48,7 @@ const DetailPage = () => {
   }, []);
 
   // detail data
-  const [detailData, setDetailData] = useState<Props>();
+  const [detailData, setDetailData] = useState<UserType | DocumentData>();
   useEffect(() => {
     userData.forEach((data) => {
       if (data.date === id) {

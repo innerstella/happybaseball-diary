@@ -1,5 +1,5 @@
 import { styled } from "styled-components";
-import BackBar from "../../components/BackBar";
+import BackBar from "../../components/back-bar";
 import Button from "../home/components/CreateButton";
 import * as S from "./Create.style";
 

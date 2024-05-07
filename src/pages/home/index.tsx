@@ -8,7 +8,7 @@ import Button from "./components/CreateButton";
 import LoginPage from "../login";
 import { useRecoilState } from "recoil";
 import { loginState } from "../../recoil/system";
-import Banner from "../../components/Banner";
+import Banner from "../../components/banner";
 
 const HomePage = () => {
   const navigate = useNavigate();

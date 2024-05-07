@@ -56,7 +56,6 @@ const RecordList = () => {
   }, []);
 
   useEffect(() => {
-    console.log(winningRate);
     if (userData.length > 0) {
       setUserStatus(userData as never[]);
       setWinningRate(getWinningRate(userData, currSeason));

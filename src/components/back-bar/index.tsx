@@ -3,10 +3,11 @@ import { styled } from "styled-components";
 
 const BackBar = () => {
   const navigate = useNavigate();
+
   return (
     <>
       <Container onClick={() => navigate(-1)}>
-        <img src="assets/svg/ic-outline-back.svg" alt="back" className="svg" />
+        <img src="assets/svg/ic-outline-back.svg" alt="뒤로 가기" className="svg" />
       </Container>
     </>
   );

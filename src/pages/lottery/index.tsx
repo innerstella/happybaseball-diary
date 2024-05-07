@@ -1,5 +1,5 @@
 import { styled } from "styled-components";
-import Bar from "../../components/BackBar";
+import Bar from "../../components/back-bar";
 import Lottery from "./components/Lottery";
 
 const LotteryPage = () => {
