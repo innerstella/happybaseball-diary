@@ -11,6 +11,8 @@ const GlobalStyles = createGlobalStyle`
         --color-white: #FFFFFF;
         --color-brown: #B18A81;
         --color-background: #fafafa;
+
+        
         }
 
   

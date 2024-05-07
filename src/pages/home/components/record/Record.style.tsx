@@ -54,12 +54,12 @@ export const Box2 = styled.div`
   line-height: normal;
 `;
 
-export const WinBox = styled.div`
+export const WinBox = styled.div<{ team: string }>`
   width: 50px;
   height: auto;
   flex-shrink: 0;
   border-radius: 0rem 0.625rem 0.625rem 0rem;
-  background: #ff542f;
+  background: ${(props) => props.team};
   display: flex;
   align-items: center;
   justify-content: center;

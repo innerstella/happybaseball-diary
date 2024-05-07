@@ -3,9 +3,13 @@ import { useNavigate } from "react-router-dom";
 import * as S from "./Record.style";
 import { CardDataType } from "../../../../types/user";
 import { DocumentData } from "firebase/firestore";
+import { TEAM_COLOR } from "../../../../constants/team";
+import { useRecoilValue } from "recoil";
+import { teamState } from "../../../../recoil/system";
 
 const Record = ({ data }: { data: CardDataType | DocumentData }) => {
   const navigate = useNavigate();
+  const team = useRecoilValue(teamState);
   // 경기 결과 계산 (1:win, 2: lose, 3:draw)
   const [result, setResult] = useState(0);
 
@@ -65,7 +69,13 @@ const Record = ({ data }: { data: CardDataType | DocumentData }) => {
           {data.myScore} : {data.vsScore}
         </S.Box2>
       </div>
-      {result === 1 && <S.WinBox>승</S.WinBox>}
+      {result === 1 && (
+        <S.WinBox
+          team={team ? TEAM_COLOR[data.my || team] : "var(--color-primary)"}
+        >
+          승
+        </S.WinBox>
+      )}
       {result === 2 && <S.LoseBox>패</S.LoseBox>}
       {result === 3 && <S.DrawBox>무</S.DrawBox>}
     </S.Container>
