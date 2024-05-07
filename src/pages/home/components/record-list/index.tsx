@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
 import * as S from "./RecordList.style";
-import Record from "../record/Record";
+import Record from "../record";
 
 // firebase
 import { collection, getDocs } from "firebase/firestore";

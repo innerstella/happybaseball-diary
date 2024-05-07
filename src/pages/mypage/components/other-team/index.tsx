@@ -1,7 +1,7 @@
 import { useRecoilValue } from "recoil";
 import { teamState, userDataState } from "../../../../recoil/system";
 import { useEffect, useState } from "react";
-import Record from "../../../home/components/record/Record";
+import Record from "../../../home/components/record";
 import styled from "styled-components";
 
 const OtherTeam = () => {

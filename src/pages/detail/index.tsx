@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { DocumentData, collection, getDocs } from "firebase/firestore";
 import { dbService } from "../../firebase";
 import { useParams } from "react-router-dom";
-import Record from "../home/components/record/Record";
+import Record from "../home/components/record";
 
 // ui
 import { Spinner } from "@chakra-ui/react";

@@ -1,7 +1,7 @@
 import { useRecoilState, useRecoilValue } from "recoil";
 import { oddState, teamState, userDataState } from "../../../../recoil/system";
 import { useEffect, useState } from "react";
-import Record from "../../../home/components/record/Record";
+import Record from "../../../home/components/record";
 import styled from "styled-components";
 import getWinningRate from "../../../../utils/getWinningRate";
 import { CURR_YEAR } from "../../../../constants/system";
