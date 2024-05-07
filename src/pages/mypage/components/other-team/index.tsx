@@ -40,13 +40,4 @@ const Container = styled.div`
   &::-webkit-scrollbar {
     display: none;
   }
-
-  img {
-    width: 70px;
-  }
-  p {
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: gray;
-  }
 `;
