@@ -22,16 +22,7 @@ const OtherTeam = () => {
   return (
     <Container>
       {otherTeamData.map((data: any, idx: number) => {
-        return (
-          <Record
-            key={data.date}
-            date={data.date}
-            location={data.location}
-            my={data.my}
-            vs={data.vs}
-            score={[data.myScore, data.vsScore]}
-          />
-        );
+        return <Record key={data.date} data={data} />;
       })}
     </Container>
   );

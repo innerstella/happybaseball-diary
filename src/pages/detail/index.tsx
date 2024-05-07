@@ -10,7 +10,7 @@ import Record from "../home/components/record/Record";
 import { Spinner } from "@chakra-ui/react";
 import { useRecoilValue } from "recoil";
 import { loginState } from "../../recoil/system";
-import { UserType } from "../../types/user";
+import { CardDataType } from "../../types/user";
 
 const DetailPage = () => {
   const { id } = useParams();
@@ -18,7 +18,7 @@ const DetailPage = () => {
 
   // 유저 정보
   const uid = loginStatus.uid;
-  const [userData, setUserData] = useState<UserType[] | DocumentData[]>([]);
+  const [userData, setUserData] = useState<CardDataType[] | DocumentData[]>([]);
   let newUserData: DocumentData[] = [];
   const [docID, setDocID] = useState("");
 
@@ -48,7 +48,7 @@ const DetailPage = () => {
   }, []);
 
   // detail data
-  const [detailData, setDetailData] = useState<UserType | DocumentData>();
+  const [detailData, setDetailData] = useState<CardDataType | DocumentData>();
   useEffect(() => {
     userData.forEach((data) => {
       if (data.date === id) {
@@ -64,11 +64,12 @@ const DetailPage = () => {
           <TopAppBar page="detail" docID={docID} uid={uid} />
           <div className="detail-box">
             <Record
-              date={detailData.date}
-              location={detailData.location}
-              my={detailData.my}
-              vs={detailData.vs}
-              score={[detailData.myScore, detailData.vsScore]}
+              // date={detailData.date}
+              // location={detailData.location}
+              // my={detailData.my}
+              // vs={detailData.vs}
+              // score={[detailData.myScore, detailData.vsScore]}
+              data={detailData}
             />
             {detailData.memo && (
               <div className="memo-box">

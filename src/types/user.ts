@@ -5,7 +5,7 @@ export interface NewUserType {
   team: string;
 }
 
-export interface UserType {
+export interface CardDataType {
   count: number;
   date: string;
   location: string;

@@ -111,16 +111,7 @@ const RecordList = () => {
                         elem.date.slice(0, 2) === String(currSeason).slice(2, 4)
                     )
                     .map((data, id) => {
-                      return (
-                        <Record
-                          key={data.date}
-                          date={data.date}
-                          location={data.location}
-                          my={data.my}
-                          vs={data.vs}
-                          score={[data.myScore, data.vsScore]}
-                        />
-                      );
+                      return <Record key={data.date} data={data} />;
                     })}
                 </>
               )}

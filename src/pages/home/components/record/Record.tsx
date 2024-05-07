@@ -1,32 +1,26 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import * as S from "./Record.style";
+import { CardDataType } from "../../../../types/user";
+import { DocumentData } from "firebase/firestore";
 
-type Props = {
-  date: string;
-  location: string;
-  my?: string;
-  vs: string;
-  score: number[];
-};
-
-const Record = ({ date, location, my, vs, score }: Props) => {
+const Record = ({ data }: { data: CardDataType | DocumentData }) => {
   const navigate = useNavigate();
   // 경기 결과 계산 (1:win, 2: lose, 3:draw)
   const [result, setResult] = useState(0);
 
   useEffect(() => {
-    if (score[0] > score[1]) {
+    if (data.myScore > data.vsScore) {
       setResult(1);
-    } else if (score[0] < score[1]) {
+    } else if (data.myScore < data.vsScore) {
       setResult(2);
     } else {
       setResult(3);
     }
-  }, [score]);
+  }, [data.myScore, data.vsScore]);
 
   return (
-    <S.Container onClick={() => navigate(`/detail/${date}`)}>
+    <S.Container onClick={() => navigate(`/detail/${data.date}`)}>
       <div className="card-box">
         <S.Box1>
           <div className="label-box">
@@ -36,7 +30,8 @@ const Record = ({ date, location, my, vs, score }: Props) => {
               className="svg"
             />
             <p className="text">
-              {date.slice(0, 2)}.{date.slice(2, 4)}.{date.slice(4, 6)}
+              {data.date.slice(0, 2)}.{data.date.slice(2, 4)}.
+              {data.date.slice(4, 6)}
             </p>
           </div>
           <div className="label-box">
@@ -45,16 +40,16 @@ const Record = ({ date, location, my, vs, score }: Props) => {
               alt="location"
               className="svg"
             />
-            <p className="text">{location}</p>
+            <p className="text">{data.location}</p>
           </div>
-          {my && (
+          {data.my && (
             <div className="label-box">
               <img
                 src="/assets/svg/ic-heart.svg"
                 alt="응원팀"
                 className="svg"
               />
-              <p className="text">{my}</p>
+              <p className="text">{data.my}</p>
             </div>
           )}
           <div className="label-box">
@@ -63,11 +58,11 @@ const Record = ({ date, location, my, vs, score }: Props) => {
               alt="상대팀"
               className="svg"
             />
-            <p className="text">{vs}</p>
+            <p className="text">{data.vs}</p>
           </div>
         </S.Box1>
         <S.Box2>
-          {score[0]} : {score[1]}
+          {data.myScore} : {data.vsScore}
         </S.Box2>
       </div>
       {result === 1 && <S.WinBox>승</S.WinBox>}

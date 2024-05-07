@@ -35,15 +35,7 @@ const MyTeam = () => {
   return (
     <Container>
       {myTeamData.map((data: any, idx: number) => {
-        return (
-          <Record
-            key={data.date}
-            date={data.date}
-            location={data.location}
-            vs={data.vs}
-            score={[data.myScore, data.vsScore]}
-          />
-        );
+        return <Record key={data.date} data={data} />;
       })}
     </Container>
   );
