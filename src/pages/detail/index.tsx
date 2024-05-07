@@ -14,6 +14,7 @@ import { loginState } from "../../recoil/system";
 type Props = {
   date: string;
   location: string;
+  my?: string;
   vs: string;
   myScore: number;
   vsScore: number;
@@ -74,6 +75,7 @@ const DetailPage = () => {
             <Record
               date={detailData.date}
               location={detailData.location}
+              my={detailData.my}
               vs={detailData.vs}
               score={[detailData.myScore, detailData.vsScore]}
             />

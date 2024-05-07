@@ -117,6 +117,7 @@ const RecordList = () => {
                           key={data.date}
                           date={data.date}
                           location={data.location}
+                          my={data.my}
                           vs={data.vs}
                           score={[data.myScore, data.vsScore]}
                         />
