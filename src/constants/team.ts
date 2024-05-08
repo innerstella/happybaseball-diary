@@ -36,12 +36,27 @@ export const PLACE_LIST = [
   "챔필",
 ];
 
+export const PLACE_COLOR: { [key: string]: string } = {
+  잠실: "linear-gradient(270deg, #A50034 0%, #131230 100%);",
+  위팍: "#000000",
+  랜필: "#ce0e2d",
+  엔팍: "#071d3d",
+  챔필: "#D72E34",
+  사직: "#0B1D40",
+  라팍: "#204B9B",
+  이팍: "#ED702D",
+  고척: "#4F0F16",
+};
+
 interface TeamData {
   name: string;
   place: string;
   color: string;
+  nx?: number;
+  ny?: number;
 }
 
+//TODO: 좌표 추가
 export const TEAM_DATA: { [key: string]: TeamData } = {
   LG: {
     name: "LG 트윈스",

@@ -12,6 +12,14 @@ export const Container = styled.div`
   gap: 2rem;
 `;
 
+export const ChipContainer = styled.div`
+  display: flex;
+  width: 80%;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+`;
+
 export const PlaceText = styled.h1`
   font-size: 2rem;
   font-weight: 600;
@@ -25,7 +33,7 @@ export const WeatherContainer = styled.div<{ team: string }>`
   align-items: center;
   gap: 1rem;
 
-  background-color: ${(props) => props.team};
+  background: ${(props) => props.team};
   border-radius: 25px;
   width: 250px;
   height: 250px;

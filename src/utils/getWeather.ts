@@ -14,13 +14,15 @@ const SKY_ICON: { [key: number]: string } = {
   4: "cloudy",
 };
 
+const nx = 35; // 정수로 써야 함
+const ny = 126;
 export async function getCurrWeather() {
-  // T1H : 기온, RN1 : 1시간 강수량, SKY : 하늘상태, UUU : 동풍, VVV : 북풍, REH : 습도
+  // T1H : 기온, RN1 : 1시간 강수량, SKY : 하늘상태
   // 하늘상태(SKY) 코드 : 맑음(1), 구름많음(3), 흐림(4)
 
   const weatherData = await axios
     .get(
-      `${base_url}/getUltraSrtFcst?serviceKey=${process.env.REACT_APP_WEATHER_KEY}&pageNo=1&numOfRows=1000&dataType=JSON&base_date=${base_date}&base_time=${base_time}&nx=55&ny=127`
+      `${base_url}/getUltraSrtFcst?serviceKey=${process.env.REACT_APP_WEATHER_KEY}&pageNo=1&numOfRows=1000&dataType=JSON&base_date=${base_date}&base_time=${base_time}&nx=${nx}&ny=${ny}`
     )
     .then((res) => {
       return res.data.response.body.items;
@@ -59,7 +61,7 @@ export async function getWeatherForecast() {
     {
       id: 1,
       fcstTime: weatherData.item
-        .filter((item: any) => item.category === "T1H")[2]
+        .filter((item: any) => item.category === "T1H")[1]
         .fcstTime.slice(0, 2),
       T1H: weatherData.item.filter((item: any) => item.category === "T1H")[1]
         .fcstValue,
@@ -73,7 +75,7 @@ export async function getWeatherForecast() {
     {
       id: 2,
       fcstTime: weatherData.item
-        .filter((item: any) => item.category === "T1H")[3]
+        .filter((item: any) => item.category === "T1H")[2]
         .fcstTime.slice(0, 2),
       T1H: weatherData.item.filter((item: any) => item.category === "T1H")[2]
         .fcstValue,
@@ -87,7 +89,7 @@ export async function getWeatherForecast() {
     {
       id: 3,
       fcstTime: weatherData.item
-        .filter((item: any) => item.category === "T1H")[1]
+        .filter((item: any) => item.category === "T1H")[3]
         .fcstTime.slice(0, 2),
       T1H: weatherData.item.filter((item: any) => item.category === "T1H")[3]
         .fcstValue,

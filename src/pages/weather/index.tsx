@@ -5,15 +5,16 @@ import { Spinner } from "@chakra-ui/react";
 
 import * as S from "./Weather.style";
 import { teamState } from "../../recoil/system";
-import { TEAM_DATA } from "../../constants/team";
+import { PLACE_COLOR, PLACE_LIST, TEAM_DATA } from "../../constants/team";
 import BackBar from "../../components/back-bar";
 import { getCurrWeather, getWeatherForecast } from "../../utils/getWeather";
 import parseBaseTime from "../../utils/parseBaseTime";
+import PlaceChip from "../../components/chip/place-chip";
 
 export default function WeatherPage() {
   const currTeam = useRecoilValue(teamState);
   const [currPlace, setCurrPlace] = useState<string>(
-    TEAM_DATA[currTeam].place || "챔필"
+    TEAM_DATA[currTeam].place || "KIA"
   );
   const { data: currData, isLoading: isCurrDataLoading } = useQuery({
     queryKey: ["weather"],
@@ -33,11 +34,23 @@ export default function WeatherPage() {
     <S.Container>
       <BackBar />
       <S.PlaceText>{currPlace}</S.PlaceText>
+      <S.ChipContainer>
+        {PLACE_LIST.map((place) => {
+          return (
+            <PlaceChip
+              currPlace={currPlace}
+              onClick={() => setCurrPlace(place)}
+            >
+              {place}
+            </PlaceChip>
+          );
+        })}
+      </S.ChipContainer>
       <S.TimeContainer>
         <p>{currData && parseBaseTime(currData?.base_time)} 기준</p>
         <p>{currData?.fsctTime}시 예상</p>
       </S.TimeContainer>
-      <S.WeatherContainer team={TEAM_DATA[currTeam].color}>
+      <S.WeatherContainer team={PLACE_COLOR[currPlace]}>
         {isCurrDataLoading ? (
           <Spinner size="xl" />
         ) : (
