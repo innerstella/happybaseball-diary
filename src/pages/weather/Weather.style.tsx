@@ -5,7 +5,6 @@ export const Container = styled.div`
   height: 100vh;
   background-color: #fafafa;
   font-family: "SUIT", sans-serif;
-  overflow: hidden;
 
   display: flex;
   flex-direction: column;
@@ -40,4 +39,44 @@ export const TempText = styled.p`
   color: var(--color-white);
   font-size: 40px;
   font-weight: 700;
+`;
+
+export const RainContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 80%;
+  padding: 10px;
+  border-radius: 10px;
+
+  background-color: var(--color-white);
+  border: 1px solid var(--color-gray-200);
+`;
+
+export const ForecastContainer = styled.div`
+  display: flex;
+  width: 80%;
+  justify-content: space-between;
+  gap: 10px;
+`;
+
+export const Forecast = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  padding: 10px;
+  border-radius: 10px;
+  width: 100%;
+
+  background-color: var(--color-white);
+  border: 1px solid var(--color-gray-200);
+`;
+
+export const TimeContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
 `;
