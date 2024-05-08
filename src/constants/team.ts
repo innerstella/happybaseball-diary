@@ -47,13 +47,64 @@ export const PLACE_COLOR: { [key: string]: string } = {
   이팍: "#ED702D",
   고척: "#4F0F16",
 };
+interface PlaceData {
+  color: string;
+  nx: number;
+  ny: number;
+}
+
+export const PLACE_DATA: { [key: string]: PlaceData } = {
+  잠실: {
+    color: "linear-gradient(270deg, #A50034 0%, #131230 100%);",
+    nx: 61, // 37.5122579
+    ny: 126, // 127.0719011
+  },
+  위팍: {
+    color: "#000000",
+    nx: 60, // 37.2997553
+    ny: 121, // 127.0096685
+  },
+  랜필: {
+    color: "#ce0e2d",
+    nx: 55, // 37.4370423
+    ny: 124, // 126.6932617
+  },
+  엔팍: {
+    color: "#071d3d",
+    nx: 89, // 35.2225335
+    ny: 76, // 128.5823895
+  },
+  챔필: {
+    color: "#D72E34",
+    nx: 59, // 35.1682592
+    ny: 75, // 126.8884114
+  },
+  사직: {
+    color: "#0B1D40",
+    nx: 98, // 35.1940316
+    ny: 76, // 129.0615183
+  },
+  라팍: {
+    color: "#204B9B",
+    nx: 90, // 35.8410136
+    ny: 90, // 128.6819955
+  },
+  이팍: {
+    color: "#ED702D",
+    nx: 68, // 36.3172026
+    ny: 100, // 127.4285703
+  },
+  고척: {
+    color: "#4F0F16",
+    nx: 58, // 37.498182
+    ny: 125, // 126.8670082
+  },
+};
 
 interface TeamData {
   name: string;
   place: string;
   color: string;
-  nx?: number;
-  ny?: number;
 }
 
 //TODO: 좌표 추가
