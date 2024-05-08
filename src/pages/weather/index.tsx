@@ -33,19 +33,8 @@ export default function WeatherPage() {
   return (
     <S.Container>
       <BackBar />
-      <S.PlaceText>{currPlace}</S.PlaceText>
-      <S.ChipContainer>
-        {PLACE_LIST.map((place) => {
-          return (
-            <PlaceChip
-              currPlace={currPlace}
-              onClick={() => setCurrPlace(place)}
-            >
-              {place}
-            </PlaceChip>
-          );
-        })}
-      </S.ChipContainer>
+
+      <S.PlaceText>구장별 날씨 예보</S.PlaceText>
       <S.TimeContainer>
         <p>{currData && parseBaseTime(currData?.base_time)} 기준</p>
         <p>{currData?.fsctTime}시 예상</p>
@@ -63,10 +52,23 @@ export default function WeatherPage() {
           </>
         )}
       </S.WeatherContainer>
+      <S.ChipContainer>
+        {PLACE_LIST.map((place) => {
+          return (
+            <PlaceChip
+              currPlace={currPlace}
+              onClick={() => setCurrPlace(place)}
+            >
+              {place}
+            </PlaceChip>
+          );
+        })}
+      </S.ChipContainer>
       <S.RainContainer>
         <span>☔️ 1시간 강수량</span>
         <span>{currData?.RN1}</span>
       </S.RainContainer>
+
       <S.ForecastContainer>
         {forecastData?.map((data) => {
           return (
