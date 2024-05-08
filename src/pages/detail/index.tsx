@@ -1,24 +1,16 @@
 import { styled } from "styled-components";
 import TopAppBar from "../../components/top-app-bar";
 import { useEffect, useState } from "react";
-import { collection, getDocs } from "firebase/firestore";
+import { DocumentData, collection, getDocs } from "firebase/firestore";
 import { dbService } from "../../firebase";
 import { useParams } from "react-router-dom";
-import Record from "../home/components/record/Record";
+import Record from "../home/components/record";
 
 // ui
 import { Spinner } from "@chakra-ui/react";
 import { useRecoilValue } from "recoil";
 import { loginState } from "../../recoil/system";
-
-type Props = {
-  date: string;
-  location: string;
-  vs: string;
-  myScore: number;
-  vsScore: number;
-  memo: string;
-};
+import { CardDataType } from "../../types/user";
 
 const DetailPage = () => {
   const { id } = useParams();
@@ -26,8 +18,8 @@ const DetailPage = () => {
 
   // 유저 정보
   const uid = loginStatus.uid;
-  const [userData, setUserData] = useState<any[]>([]);
-  let newUserData: any[] = [];
+  const [userData, setUserData] = useState<CardDataType[] | DocumentData[]>([]);
+  let newUserData: DocumentData[] = [];
   const [docID, setDocID] = useState("");
 
   useEffect(() => {
@@ -56,7 +48,7 @@ const DetailPage = () => {
   }, []);
 
   // detail data
-  const [detailData, setDetailData] = useState<Props>();
+  const [detailData, setDetailData] = useState<CardDataType | DocumentData>();
   useEffect(() => {
     userData.forEach((data) => {
       if (data.date === id) {
@@ -72,10 +64,12 @@ const DetailPage = () => {
           <TopAppBar page="detail" docID={docID} uid={uid} />
           <div className="detail-box">
             <Record
-              date={detailData.date}
-              location={detailData.location}
-              vs={detailData.vs}
-              score={[detailData.myScore, detailData.vsScore]}
+              // date={detailData.date}
+              // location={detailData.location}
+              // my={detailData.my}
+              // vs={detailData.vs}
+              // score={[detailData.myScore, detailData.vsScore]}
+              data={detailData}
             />
             {detailData.memo && (
               <div className="memo-box">

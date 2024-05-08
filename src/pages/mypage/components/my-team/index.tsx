@@ -1,7 +1,7 @@
 import { useRecoilState, useRecoilValue } from "recoil";
 import { oddState, teamState, userDataState } from "../../../../recoil/system";
 import { useEffect, useState } from "react";
-import Record from "../../../home/components/record/Record";
+import Record from "../../../home/components/record";
 import styled from "styled-components";
 import getWinningRate from "../../../../utils/getWinningRate";
 import { CURR_YEAR } from "../../../../constants/system";
@@ -35,15 +35,7 @@ const MyTeam = () => {
   return (
     <Container>
       {myTeamData.map((data: any, idx: number) => {
-        return (
-          <Record
-            key={data.date}
-            date={data.date}
-            location={data.location}
-            vs={data.vs}
-            score={[data.myScore, data.vsScore]}
-          />
-        );
+        return <Record key={data.date} data={data} />;
       })}
     </Container>
   );

@@ -3,110 +3,72 @@ import styled from "styled-components";
 export const Container = styled.div`
   display: flex;
   flex-direction: row;
-  .card-box {
-    width: 100%;
-
-    padding: 1.25rem 1.5rem;
-    border-radius: 0.625rem;
-    background: #fff;
-
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    gap: 2rem;
-  }
+  cursor: pointer;
 `;
 
-export const Box1 = styled.div`
+export const CardBox = styled.div`
+  width: 100%;
+  padding: 1.25rem 1.5rem;
+  border-radius: 0.625rem;
+  background: var(--color-white);
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+`;
+
+export const IconBox = styled.div`
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-  .svg {
-    width: 1.25rem;
-    height: 1.25rem;
-    flex-shrink: 0;
-  }
-
-  .label-box {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 1.5rem;
-    .text {
-      margin: 0;
-      color: #4a5568;
-      font-family: "SUIT", sans-serif;
-      font-size: 1.25rem;
-      font-style: normal;
-      font-weight: 400;
-      line-height: normal;
-    }
-  }
 `;
 
-export const Box2 = styled.div`
-  color: #4a5568;
-  font-family: "SUIT", sans-serif;
+export const Icon = styled.img`
+  width: 1.25rem;
+  height: 1.25rem;
+`;
+
+export const LabelBox = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1.5rem;
+`;
+
+export const Text = styled.p`
+  margin: 0;
+  color: var(--color-gray-200);
+  font-size: 1.25rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+`;
+
+export const ScoreBox = styled.div`
+  color: var(--color-gray-200);
   font-size: 2rem;
-  font-style: normal;
   font-weight: 700;
-  line-height: normal;
 `;
 
-export const WinBox = styled.div`
+export const FlagBox = styled.div<{ team?: string; result: string }>`
   width: 50px;
   height: auto;
-  flex-shrink: 0;
   border-radius: 0rem 0.625rem 0.625rem 0rem;
-  background: #ff542f;
+  background: ${(props) => {
+    if (props.result === "win") {
+      return props.team;
+    } else if (props.result === "lose") {
+      return "var(--color-gray-100)";
+    } else if (props.result === "draw") {
+      return "var(--color-brown)";
+    }
+  }};
   display: flex;
   align-items: center;
   justify-content: center;
-
   color: #fff;
-  font-family: "SUIT", sans-serif;
   font-size: 1.25rem;
-  font-style: normal;
   font-weight: 700;
-  line-height: normal;
-  text-align: center;
-`;
-
-export const LoseBox = styled.div`
-  width: 50px;
-  height: auto;
-  flex-shrink: 0;
-  border-radius: 0rem 0.625rem 0.625rem 0rem;
-  background: #a9a9a9;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  color: #fff;
-  font-family: "SUIT", sans-serif;
-  font-size: 1.25rem;
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
-  text-align: center;
-`;
-
-export const DrawBox = styled.div`
-  width: 50px;
-  height: auto;
-  flex-shrink: 0;
-  border-radius: 0rem 0.625rem 0.625rem 0rem;
-  background: #b18a81;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  color: #fff;
-  font-family: "SUIT", sans-serif;
-  font-size: 1.25rem;
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
-  text-align: center;
 `;

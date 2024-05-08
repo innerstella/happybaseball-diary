@@ -1,5 +1,5 @@
 import { styled } from "styled-components";
-import BackBar from "../../components/BackBar";
+import BackBar from "../../components/back-bar";
 import Button from "../home/components/CreateButton";
 import * as S from "./Create.style";
 
@@ -25,7 +25,8 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useRecoilValue } from "recoil";
 import { loginState } from "../../recoil/system";
-import { PLACE_LIST, TEAM_LIST } from "../../constants/team";
+import { TEAM_LIST } from "../../constants/team";
+import { PLACE_LIST } from "../../constants/place";
 
 const CreatePage = () => {
   const navigate = useNavigate();

@@ -6,13 +6,6 @@ export const Container = styled.div`
   gap: 1rem;
   width: 100%;
 
-  .spinner {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 40vh;
-  }
-
   .text {
     color: #000;
     font-family: "SUIT", sans-serif;
@@ -22,6 +15,13 @@ export const Container = styled.div`
     line-height: normal;
     margin: 0;
   }
+`;
+
+export const SpinnerContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40vh;
 `;
 
 export const SeasonTap = styled.div`

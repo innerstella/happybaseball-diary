@@ -6,15 +6,13 @@ import * as S from "./TopAppBar.style";
 import { useRecoilValue } from "recoil";
 import { loginState } from "../../recoil/system";
 
-const TopAppBar = ({
-  page,
-  docID,
-  uid,
-}: {
-  page: string;
+interface TopAppBarProps {
+  page: "home" | "mypage" | "detail";
   docID?: string;
   uid?: string;
-}) => {
+}
+
+const TopAppBar = ({ page, docID, uid }: TopAppBarProps) => {
   const navigate = useNavigate();
   const loginStatus = useRecoilValue(loginState);
 
@@ -35,67 +33,59 @@ const TopAppBar = ({
       })
       .catch((err) => console.error(err));
   };
-  return (
-    <S.Container>
-      {page === "home" && (
-        <>
-          <h1 className="title">⚾️ 직관일기</h1>
-          {loginStatus.isLogin === true && (
-            <img
-              onClick={() => navigate("/mypage")}
-              src="assets/svg/ic-solid-user.svg"
-              alt="user"
-              className="svg"
-            />
-          )}
-          {/* <img
-            src="assets/svg/ic-solid-question.svg"
-            alt="user"
-            className="svg"
-            onClick={() =>
-              window.open(
-                "https://innerstella.notion.site/dda1def259cd4f5cbcd1ca6b229e7f5a?pvs=4"
-              )
-            }
-          /> */}
-        </>
-      )}
-      {page === "mypage" && (
-        <>
+
+  // 페이지별 상단바
+  const BAR_LIST: { [key: string]: JSX.Element } = {
+    home: (
+      <>
+        <h1 className="title">⚾️ 직관일기</h1>
+        {loginStatus.isLogin === true && (
           <img
-            onClick={() => navigate(-1)}
-            src="assets/svg/ic-outline-back.svg"
-            alt="back"
+            onClick={() => navigate("/mypage")}
+            src="assets/svg/ic-solid-user.svg"
+            alt="마이페이지"
             className="svg"
           />
+        )}
+      </>
+    ),
+    mypage: (
+      <>
+        <img
+          onClick={() => navigate(-1)}
+          src="assets/svg/ic-outline-back.svg"
+          alt="뒤로가기"
+          className="svg"
+        />
+        <img
+          src="assets/svg/ic-outline-logout.svg"
+          alt="로그아웃"
+          className="svg"
+          onClick={() => logout()}
+        />
+      </>
+    ),
+    detail: (
+      <>
+        <img
+          onClick={() => navigate(-1)}
+          src="/assets/svg/ic-outline-back.svg"
+          alt="뒤로가기"
+          className="svg"
+        />
+        <div className="row">
           <img
-            src="assets/svg/ic-outline-logout.svg"
-            alt="logout"
+            src="/assets/svg/ic-outline-delete.svg"
+            alt="삭제하기"
             className="svg"
-            onClick={() => logout()}
+            onClick={() => delRec()}
           />
-        </>
-      )}
-      {page === "detail" && (
-        <>
-          <img
-            onClick={() => navigate(-1)}
-            src="/assets/svg/ic-outline-back.svg"
-            alt="back"
-            className="svg"
-          />
-          <div className="row">
-            <img
-              src="/assets/svg/ic-outline-delete.svg"
-              alt="delete"
-              className="svg"
-              onClick={() => delRec()}
-            />
-          </div>
-        </>
-      )}
-    </S.Container>
-  );
+        </div>
+      </>
+    ),
+  };
+
+  return <S.Container>{BAR_LIST[page]}</S.Container>;
 };
 
 export default TopAppBar;

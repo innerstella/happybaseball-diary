@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
 import * as S from "./RecordList.style";
-import Record from "../record/Record";
+import Record from "../record";
 
 // firebase
 import { collection, getDocs } from "firebase/firestore";
@@ -27,7 +27,6 @@ const RecordList = () => {
   const [winningRate, setWinningRate] = useState("0.000");
 
   // 유저 정보
-
   const uid = loginStatus.uid;
   const [userData, setUserData] = useState<any[]>([]);
   let newUserData: any[] = [];
@@ -56,7 +55,6 @@ const RecordList = () => {
   }, []);
 
   useEffect(() => {
-    console.log(winningRate);
     if (userData.length > 0) {
       setUserStatus(userData as never[]);
       setWinningRate(getWinningRate(userData, currSeason));
@@ -66,7 +64,7 @@ const RecordList = () => {
   return (
     <S.Container>
       {isLoading ? (
-        <div className="spinner">
+        <S.SpinnerContainer>
           <Spinner
             thickness="4px"
             speed="1s"
@@ -74,7 +72,7 @@ const RecordList = () => {
             color="#464646"
             size="xl"
           />
-        </div>
+        </S.SpinnerContainer>
       ) : (
         <>
           <p className="text">
@@ -94,15 +92,6 @@ const RecordList = () => {
           {userData.length > 0 ? (
             <S.RecordBox>
               {winningRate === "NaN" ? (
-                // <div>
-                //   <Spinner
-                //     thickness="4px"
-                //     speed="1s"
-                //     emptyColor="gray.200"
-                //     color="#464646"
-                //     size="xl"
-                //   />
-                // </div>
                 <FirstRecord />
               ) : (
                 <>
@@ -112,15 +101,7 @@ const RecordList = () => {
                         elem.date.slice(0, 2) === String(currSeason).slice(2, 4)
                     )
                     .map((data, id) => {
-                      return (
-                        <Record
-                          key={data.date}
-                          date={data.date}
-                          location={data.location}
-                          vs={data.vs}
-                          score={[data.myScore, data.vsScore]}
-                        />
-                      );
+                      return <Record key={data.date} data={data} />;
                     })}
                 </>
               )}

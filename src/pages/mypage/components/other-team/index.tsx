@@ -1,7 +1,7 @@
 import { useRecoilValue } from "recoil";
 import { teamState, userDataState } from "../../../../recoil/system";
 import { useEffect, useState } from "react";
-import Record from "../../../home/components/record/Record";
+import Record from "../../../home/components/record";
 import styled from "styled-components";
 
 const OtherTeam = () => {
@@ -22,16 +22,7 @@ const OtherTeam = () => {
   return (
     <Container>
       {otherTeamData.map((data: any, idx: number) => {
-        return (
-          <Record
-            key={data.date}
-            date={data.date}
-            location={data.location}
-            my={data.my}
-            vs={data.vs}
-            score={[data.myScore, data.vsScore]}
-          />
-        );
+        return <Record key={data.date} data={data} />;
       })}
     </Container>
   );
@@ -48,14 +39,5 @@ const Container = styled.div`
   overflow-y: scroll;
   &::-webkit-scrollbar {
     display: none;
-  }
-
-  img {
-    width: 70px;
-  }
-  p {
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: gray;
   }
 `;
