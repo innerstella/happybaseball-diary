@@ -1,11 +1,13 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRecoilValue } from "recoil";
 import { useQuery } from "@tanstack/react-query";
 import { Spinner } from "@chakra-ui/react";
 
 import * as S from "./Weather.style";
 import { teamState } from "../../recoil/system";
-import { PLACE_COLOR, PLACE_LIST, TEAM_DATA } from "../../constants/team";
+import { TEAM_DATA } from "../../constants/team";
+import { PLACE_DATA, PLACE_LIST } from "../../constants/place";
+
 import BackBar from "../../components/back-bar";
 import { getCurrWeather, getWeatherForecast } from "../../utils/getWeather";
 import parseBaseTime from "../../utils/parseBaseTime";
@@ -16,32 +18,45 @@ export default function WeatherPage() {
   const [currPlace, setCurrPlace] = useState<string>(
     TEAM_DATA[currTeam].place || "KIA"
   );
-  const { data: currData, isLoading: isCurrDataLoading } = useQuery({
+  const {
+    data: currData,
+    isLoading: isCurrDataLoading,
+    refetch: refetchCurrData,
+    fetchStatus: currDataFetchStatus,
+  } = useQuery({
     queryKey: ["weather"],
-    queryFn: getCurrWeather,
+    queryFn: () => getCurrWeather(currPlace),
     staleTime: 60 * 1000,
     gcTime: 60 * 1000 * 10,
   });
 
-  const { data: forecastData, isLoading: isForecastDataLoading } = useQuery({
+  const {
+    data: forecastData,
+    isLoading: isForecastDataLoading,
+    refetch: refetchForecastData,
+  } = useQuery({
     queryKey: ["forecast"],
-    queryFn: getWeatherForecast,
+    queryFn: () => getWeatherForecast(currPlace),
     staleTime: 60 * 1000,
     gcTime: 60 * 1000 * 10,
   });
+
+  useEffect(() => {
+    refetchCurrData();
+    refetchForecastData();
+  }, [currPlace]);
 
   return (
     <S.Container>
       <BackBar />
-
       <S.PlaceText>구장별 날씨 예보</S.PlaceText>
       <S.TimeContainer>
         <p>{currData && parseBaseTime(currData?.base_time)} 기준</p>
         <p>{currData?.fsctTime}시 예상</p>
       </S.TimeContainer>
-      <S.WeatherContainer team={PLACE_COLOR[currPlace]}>
-        {isCurrDataLoading ? (
-          <Spinner size="xl" />
+      <S.WeatherContainer team={PLACE_DATA[currPlace].color}>
+        {isCurrDataLoading || currDataFetchStatus !== "idle" ? (
+          <Spinner size="xl" color="white" />
         ) : (
           <>
             <S.WeatherIcon
@@ -68,7 +83,6 @@ export default function WeatherPage() {
         <span>☔️ 1시간 강수량</span>
         <span>{currData?.RN1}</span>
       </S.RainContainer>
-
       <S.ForecastContainer>
         {forecastData?.map((data) => {
           return (

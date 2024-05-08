@@ -49,10 +49,13 @@ export async function getCurrWeather(currPlace: string) {
   };
 }
 
-export async function getWeatherForecast() {
+export async function getWeatherForecast(currPlace: string) {
+  const nx = PLACE_DATA[currPlace].nx;
+  const ny = PLACE_DATA[currPlace].ny;
+
   const weatherData = await axios
     .get(
-      `${base_url}/getUltraSrtFcst?serviceKey=${process.env.REACT_APP_WEATHER_KEY}&pageNo=1&numOfRows=1000&dataType=JSON&base_date=${base_date}&base_time=${base_time}&nx=55&ny=127`
+      `${base_url}/getUltraSrtFcst?serviceKey=${process.env.REACT_APP_WEATHER_KEY}&pageNo=1&numOfRows=1000&dataType=JSON&base_date=${base_date}&base_time=${base_time}&nx=${nx}&ny=${ny}`
     )
     .then((res) => {
       return res.data.response.body.items;
