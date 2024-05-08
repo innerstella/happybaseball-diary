@@ -1,4 +1,5 @@
 import axios from "axios";
+import { PLACE_DATA } from "../constants/place";
 
 const base_url = "https://apis.data.go.kr/1360000/VilageFcstInfoService_2.0";
 const now = new Date();
@@ -11,14 +12,14 @@ const base_time =
 const SKY_ICON: { [key: number]: string } = {
   1: "sun",
   3: "sunAndCloud",
-  4: "cloudy",
+  4: "cloud",
 };
 
-const nx = 35; // 정수로 써야 함
-const ny = 126;
-export async function getCurrWeather() {
+export async function getCurrWeather(currPlace: string) {
   // T1H : 기온, RN1 : 1시간 강수량, SKY : 하늘상태
   // 하늘상태(SKY) 코드 : 맑음(1), 구름많음(3), 흐림(4)
+  const nx = PLACE_DATA[currPlace].nx;
+  const ny = PLACE_DATA[currPlace].ny;
 
   const weatherData = await axios
     .get(

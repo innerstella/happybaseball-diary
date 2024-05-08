@@ -4,7 +4,7 @@ import { DocumentData } from "firebase/firestore";
 
 import * as S from "./Record.style";
 import { CardDataType } from "../../../../types/user";
-import { TEAM_COLOR } from "../../../../constants/team";
+import { TEAM_DATA } from "../../../../constants/team";
 import { teamState } from "../../../../recoil/system";
 import getGameResult from "../../../../utils/getGameResult";
 import getParsedDate from "../../../../utils/getParsedDate";
@@ -17,7 +17,7 @@ const Record = ({ data }: { data: CardDataType | DocumentData }) => {
   const SCORE_FLAGS = {
     win: (
       <S.FlagBox
-        team={team ? TEAM_COLOR[data.my || team] : "var(--color-primary)"}
+        team={team ? TEAM_DATA[data.my || team].color : "var(--color-primary)"}
         result="win"
       >
         승

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { PLACE_COLOR } from "../../../constants/team";
+import { PLACE_DATA } from "../../../constants/place";
 
 interface SeasonChipProps {
   children: React.ReactNode;
@@ -24,7 +24,7 @@ export default PlaceChip;
 const Container = styled.div<{ currPlace: boolean; place: string }>`
   display: flex;
   background: ${(props) =>
-    props.currPlace ? PLACE_COLOR[props.place] : "var(--color-white)"};
+    props.currPlace ? PLACE_DATA[props.place].color : "var(--color-white)"};
   color: ${(props) =>
     props.currPlace ? "var(--color-white)" : "var(--color-gray-200)"};
   padding: 5px 10px;

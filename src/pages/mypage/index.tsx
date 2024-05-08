@@ -18,7 +18,7 @@ import { dbService } from "../../firebase";
 import Modal from "../../components/modal";
 import { Select } from "@chakra-ui/react";
 import { NewUserType } from "../../types/user";
-import { TEAM_COLOR, TEAM_LIST } from "../../constants/team";
+import { TEAM_DATA, TEAM_LIST } from "../../constants/team";
 import OddBox from "./components/odd-box";
 
 const MyPage = () => {
@@ -114,7 +114,7 @@ const MyPage = () => {
         </S.User>
       ) : (
         <S.User>
-          <S.TeamIcon team={TEAM_COLOR[team]}></S.TeamIcon>
+          <S.TeamIcon team={TEAM_DATA[team].color}></S.TeamIcon>
           <span>{nickname}</span>
           <img
             src="assets/svg/ic-outline-pencil.svg"
