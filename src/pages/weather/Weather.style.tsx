@@ -53,6 +53,7 @@ export const RainContainer = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
   width: 80%;
   padding: 10px;
   border-radius: 10px;

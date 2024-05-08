@@ -12,6 +12,7 @@ import BackBar from "../../components/back-bar";
 import { getCurrWeather, getWeatherForecast } from "../../utils/getWeather";
 import parseBaseTime from "../../utils/parseBaseTime";
 import PlaceChip from "../../components/chip/place-chip";
+import Skeleton from "../../components/skeleton";
 
 export default function WeatherPage() {
   const currTeam = useRecoilValue(teamState);
@@ -34,6 +35,7 @@ export default function WeatherPage() {
     data: forecastData,
     isLoading: isForecastDataLoading,
     refetch: refetchForecastData,
+    fetchStatus: forecastDataFetchStatus,
   } = useQuery({
     queryKey: ["forecast"],
     queryFn: () => getWeatherForecast(currPlace),
@@ -80,19 +82,25 @@ export default function WeatherPage() {
         })}
       </S.ChipContainer>
       <S.RainContainer>
-        <span>☔️ 1시간 강수량</span>
-        <span>{currData?.RN1}</span>
+        <strong>☔️ 1시간 강수량</strong>
+        {currDataFetchStatus !== "idle" ? (
+          <Spinner size="xs" />
+        ) : (
+          <span>{currData?.RN1}</span>
+        )}
       </S.RainContainer>
       <S.ForecastContainer>
-        {forecastData?.map((data) => {
-          return (
-            <S.Forecast key={data.id}>
-              <strong>{data.fcstTime} 시</strong>
-              <p>{data.T1H} ℃</p>
-              <p>{data.RN1}</p>
-            </S.Forecast>
-          );
-        })}
+        {isForecastDataLoading || forecastDataFetchStatus !== "idle"
+          ? [1, 2, 3].map((id) => <Skeleton key={id} />)
+          : forecastData?.map((data) => {
+              return (
+                <S.Forecast key={data.id}>
+                  <strong>{data.fcstTime} 시</strong>
+                  <p>{data.T1H} ℃</p>
+                  <p>{data.RN1}</p>
+                </S.Forecast>
+              );
+            })}
       </S.ForecastContainer>
       <p>© 기상청 단기예보 조회서비스(2.0)</p>
     </S.Container>
