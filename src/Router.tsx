@@ -3,8 +3,8 @@ import HomePage from "./pages/home";
 import CreatePage from "./pages/create/Create";
 import MyPage from "./pages/mypage";
 import DetailPage from "./pages/detail";
-import PrivateRouter from "./PrivateRouter";
 import GlobalStyles from "./GlobalStyles";
+import WeatherPage from "./pages/weather";
 
 const AppRouter = () => {
   return (
@@ -12,15 +12,10 @@ const AppRouter = () => {
       <GlobalStyles />
       <Routes>
         <Route path="/" element={<HomePage />} />
-        {/* <Route element={<PrivateRouter />}> */}
         <Route path="/create" element={<CreatePage />} />
-        {/* </Route> */}
-        {/* <Route element={<PrivateRouter />}> */}
         <Route path="/mypage" element={<MyPage />} />
-        {/* </Route> */}
-        {/* <Route element={<PrivateRouter />}> */}
         <Route path="/detail/:id" element={<DetailPage />} />
-        {/* </Route> */}
+        <Route path="/weather" element={<WeatherPage />} />
       </Routes>
     </BrowserRouter>
   );

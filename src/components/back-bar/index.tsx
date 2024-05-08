@@ -7,7 +7,11 @@ const BackBar = () => {
   return (
     <>
       <Container onClick={() => navigate(-1)}>
-        <img src="assets/svg/ic-outline-back.svg" alt="뒤로 가기" className="svg" />
+        <img
+          src="assets/svg/ic-outline-back.svg"
+          alt="뒤로 가기"
+          className="svg"
+        />
       </Container>
     </>
   );
@@ -21,5 +25,6 @@ const Container = styled.div`
   width: 100%;
   .svg {
     height: 1.875rem;
+    cursor: pointer;
   }
 `;
