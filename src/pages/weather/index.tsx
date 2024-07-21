@@ -1,18 +1,18 @@
+import { Spinner } from "@chakra-ui/react";
+import { useQuery } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 import { useRecoilValue } from "recoil";
-import { useQuery } from "@tanstack/react-query";
-import { Spinner } from "@chakra-ui/react";
 
-import * as S from "./Weather.style";
-import { teamState } from "../../recoil/system";
-import { TEAM_DATA } from "../../constants/team";
 import { PLACE_DATA, PLACE_LIST } from "../../constants/place";
+import { TEAM_DATA } from "../../constants/team";
+import { teamState } from "../../recoil/system";
+import * as S from "./Weather.style";
 
 import BackBar from "../../components/back-bar";
-import { getCurrWeather, getWeatherForecast } from "../../utils/getWeather";
-import parseBaseTime from "../../utils/parseBaseTime";
 import PlaceChip from "../../components/chip/place-chip";
 import Skeleton from "../../components/skeleton";
+import { getCurrWeather, getWeatherForecast } from "../../utils/getWeather";
+import parseBaseTime from "../../utils/parseBaseTime";
 
 export default function WeatherPage() {
   const currTeam = useRecoilValue(teamState);
@@ -39,8 +39,8 @@ export default function WeatherPage() {
   } = useQuery({
     queryKey: ["forecast"],
     queryFn: () => getWeatherForecast(currPlace),
-    staleTime: 60 * 1000,
-    gcTime: 60 * 1000 * 10,
+    staleTime: 30 * 60 * 1000,
+    gcTime: 60 * 60 * 1000,
   });
 
   useEffect(() => {
